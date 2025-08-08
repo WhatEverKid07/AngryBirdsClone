@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    private void PlayButton()
+    public void PlayButton()
     {
         menuSound(1);
         closeWindow(startMenu);
