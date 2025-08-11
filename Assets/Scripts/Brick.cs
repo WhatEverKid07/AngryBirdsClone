@@ -23,6 +23,7 @@ public class Brick : MonoBehaviour
     [SerializeField] private int materialType;
 
     [SerializeField] private bool isTnt = false;
+    [SerializeField] private bool active = false;
     // 0 wood 
     // 1 glass
     // 2 stone
@@ -58,10 +59,17 @@ public class Brick : MonoBehaviour
     }
     private void Awake()
     {
+        if (!active)
+        {
+            return;
+        }
+        AwakeMethod();
+    }
+    private void AwakeMethod()
+    {
         score = GameObject.Find("number").GetComponent<Score>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-
 
         score.maxScoreUpdate(destroyScore);
     }

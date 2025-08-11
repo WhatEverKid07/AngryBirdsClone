@@ -371,7 +371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -377, y: -455}
+  m_AnchoredPosition: {x: -664, y: -178}
   m_SizeDelta: {x: 119, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370189226
@@ -905,7 +905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224, y: -455}
+  m_AnchoredPosition: {x: -511, y: -178}
   m_SizeDelta: {x: 119, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920394226
@@ -1403,7 +1403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71, y: -455}
+  m_AnchoredPosition: {x: -358, y: -178}
   m_SizeDelta: {x: 119, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550328641
@@ -1623,9 +1623,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeablePrefabs:
-  - {fileID: 4540302564538108758, guid: d9e0208c2c274494fbb395e1ffd272b2, type: 3}
-  - {fileID: 4540302564538108758, guid: f28b36312b9e2c047929939275db70a1, type: 3}
-  - {fileID: 4540302564538108758, guid: 838f8a32a7314494392cf8a8106902c7, type: 3}
+  - {fileID: 4540302564538108758, guid: a855287975762984ab9016c2dbcba66d, type: 3}
+  - {fileID: 4540302564538108758, guid: 84bf0ec6dc36e6a47a2688a94c7750d0, type: 3}
+  - {fileID: 4540302564538108758, guid: f9ed2c7f9566f2c48a81ffe2f1cebc23, type: 3}
   saveFileName: customLevel.json
 --- !u!4 &1794789231
 Transform:

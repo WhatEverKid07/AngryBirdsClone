@@ -1,0 +1,434 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.4f1 (35713cd46cd7) revision 3502396'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'en' Physical Memory: 31861 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+F:\Unity\2022.3.4f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+C:/Users/eugen/Documents/GitHub/AngryBirdsClone
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+52316
+Successfully changed project path to: C:/Users/eugen/Documents/GitHub/AngryBirdsClone
+C:/Users/eugen/Documents/GitHub/AngryBirdsClone
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [27408] Host "[IP] 192.168.56.1 [Port] 0 [Flags] 2 [Guid] 2129968252 [EditorId] 2129968252 [Version] 1048832 [Id] WindowsEditor(7,NASA9) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [27408] Host "[IP] 192.168.56.1 [Port] 0 [Flags] 2 [Guid] 2129968252 [EditorId] 2129968252 [Version] 1048832 [Id] WindowsEditor(7,NASA9) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 21.91 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.4f1 (35713cd46cd7)
+[Subsystems] Discovering subsystems at path F:/Unity/2022.3.4f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/eugen/Documents/GitHub/AngryBirdsClone/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon RX 7900 GRE (ID=0x744c)
+    Vendor:   ATI
+    VRAM:     16298 MB
+    Driver:   32.0.13031.3015
+Initialize mono
+Mono path[0] = 'F:/Unity/2022.3.4f1/Editor/Data/Managed'
+Mono path[1] = 'F:/Unity/2022.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'F:/Unity/2022.3.4f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56556
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/AppleTVSupport/UnityEditor.AppleTV.Extensions.dll
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Register platform support module: F:/Unity/2022.3.4f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+Registered in 0.006883 seconds.
+- Loaded All Assemblies, in  0.226 seconds
+Native extension for UWP target not found
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+[usbmuxd] Send listen message
+Native extension for AppleTV target not found
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+[usbmuxd] Send listen message
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 227 ms
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.445 seconds
+Domain Reload Profiling: 671ms
+	BeginReloadAssembly (55ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (101ms)
+		LoadAssemblies (55ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (98ms)
+			TypeCache.Refresh (98ms)
+				TypeCache.ScanAssembly (87ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (445ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (405ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (322ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (1ms)
+			ProcessInitializeOnLoadAttributes (54ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\eugen\Documents\GitHub\AngryBirdsClone\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\eugen\Documents\GitHub\AngryBirdsClone\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.546 seconds
+Refreshing native plugins compatible for Editor in 12.00 ms, found 4 plugins.
+Native extension for UWP target not found
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for AppleTV target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.424 seconds
+Domain Reload Profiling: 965ms
+	BeginReloadAssembly (81ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (19ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (19ms)
+	LoadAllAssembliesAndSetupDomain (416ms)
+		LoadAssemblies (269ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (179ms)
+			TypeCache.Refresh (160ms)
+				TypeCache.ScanAssembly (150ms)
+			ScanForSourceGeneratedMonoScriptInfo (17ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (424ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (317ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (21ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (53ms)
+			ProcessInitializeOnLoadAttributes (151ms)
+			ProcessInitializeOnLoadMethodAttributes (88ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (3ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 10.35 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5102 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 98 unused Assets / (76.4 KB). Loaded Objects now: 5548.
+Memory consumption went from 172.8 MB to 172.7 MB.
+Total: 5.882800 ms (FindLiveObjects: 0.369800 ms CreateObjectMapping: 0.176100 ms MarkObjects: 5.172500 ms  DeleteObjects: 0.163600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 601.386116 seconds.
+  path: Assets/Sounds/Menu
+  artifactKey: Guid(92357bcfd58d6eb479c4682f9013403a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/Menu using Guid(92357bcfd58d6eb479c4682f9013403a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '663e1912dc02f47c1227a43aaef9fabc') in 0.002128 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2.022495 seconds.
+  path: Assets/Sounds/Level
+  artifactKey: Guid(9ac4d9435213d974ba672835f4a7ed10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/Level using Guid(9ac4d9435213d974ba672835f4a7ed10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ec5f4a7492ae49d049b1635a2194232') in 0.000341 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.051115 seconds.
+  path: Assets/Sounds/Level/level clear military 1.mp3
+  artifactKey: Guid(05878787555869e40bd79f3cc9e9e19f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/Level/level clear military 1.mp3 using Guid(05878787555869e40bd79f3cc9e9e19f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41205fd4b62e4e84ed56bd874000781e') in 0.053745 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.227689 seconds.
+  path: Assets/Sounds/building
+  artifactKey: Guid(1e8352cd554d28545887154ccc8c0e08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building using Guid(1e8352cd554d28545887154ccc8c0e08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '166398915ce715bd7aa44d92457b10cd') in 0.000331 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2.631984 seconds.
+  path: Assets/Sounds/building/wood
+  artifactKey: Guid(e4d8ab3c78ceddf4fa47f770330d7fbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/wood using Guid(e4d8ab3c78ceddf4fa47f770330d7fbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a0aa1139e093ca9735797036a92fc09') in 0.000426 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.076842 seconds.
+  path: Assets/Sounds/building/wood/wood collision a1.wav
+  artifactKey: Guid(cc3982263c9884848b3bb12cb79ea966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/wood/wood collision a1.wav using Guid(cc3982263c9884848b3bb12cb79ea966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ec818531536bccc8f17d4786938ff79') in 0.011336 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Sounds/building/wood/wood damage a3.wav
+  artifactKey: Guid(e067d22f45735b344a11720c9034978e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/wood/wood damage a3.wav using Guid(e067d22f45735b344a11720c9034978e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78bf1f4aa928f42dcb01466606b94d4a') in 0.011809 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Sounds/building/wood/wood destroyed a1.wav
+  artifactKey: Guid(d7f898932fe723148a7e9156e045e6dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/wood/wood destroyed a1.wav using Guid(d7f898932fe723148a7e9156e045e6dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fcce8d00e447ac8a2f5c156847d799b') in 0.012298 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.124948 seconds.
+  path: Assets/Sounds/building/rock
+  artifactKey: Guid(bba0ee8f9c2fed4429d8082b3b32fee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/rock using Guid(bba0ee8f9c2fed4429d8082b3b32fee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02a0e7a4e45b8daa1e5f8f5826686c92') in 0.000356 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.075616 seconds.
+  path: Assets/Sounds/building/rock/rock collision a1.wav
+  artifactKey: Guid(82f17c6b6ba39dc4aa0bcce0d51c9485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/rock/rock collision a1.wav using Guid(82f17c6b6ba39dc4aa0bcce0d51c9485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea20cb02b13cabd94720df93a492d628') in 0.013183 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Sounds/building/rock/rock destroyed a1.wav
+  artifactKey: Guid(f9c04e96d577c80498f64353808bf0fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/rock/rock destroyed a1.wav using Guid(f9c04e96d577c80498f64353808bf0fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42b8aff1b6823135f07e43dd63f9e0b4') in 0.014159 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Sounds/building/rock/rock rolling.wav
+  artifactKey: Guid(f6ff7dce89c19a6488ccb778200bd3c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/rock/rock rolling.wav using Guid(f6ff7dce89c19a6488ccb778200bd3c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3acfe17e1733c6e2908a7e7363a8d5ce') in 0.014788 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.213936 seconds.
+  path: Assets/Sounds/building/glass
+  artifactKey: Guid(54a930519db3a2447aa3295cc4ccd577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/glass using Guid(54a930519db3a2447aa3295cc4ccd577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ee1d2c33fcb1760a2625c65003fc5cd') in 0.000328 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.084887 seconds.
+  path: Assets/Sounds/building/glass/ice light collision a1.wav
+  artifactKey: Guid(e4ecb9e9ecc9c9a4b9429dd59cc87629) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/glass/ice light collision a1.wav using Guid(e4ecb9e9ecc9c9a4b9429dd59cc87629) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b2434fea152ffcc164eb7b796c81c2e') in 0.011456 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Sounds/building/glass/light damage a1.wav
+  artifactKey: Guid(cc7dc5ed5f1f48b46a675ff8624cc7f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/glass/light damage a1.wav using Guid(cc7dc5ed5f1f48b46a675ff8624cc7f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '468f90a4309a18a6bb2eef30331243ed') in 0.009886 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Sounds/building/glass/light destroyed a3.wav
+  artifactKey: Guid(95ffd1b99426b394a939051ac385698d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/glass/light destroyed a3.wav using Guid(95ffd1b99426b394a939051ac385698d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c19c0058958c1372379be530d0d0b57b') in 0.008601 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Sounds/building/glass/light rolling.wav
+  artifactKey: Guid(3e7df20f033206d4cbf35ca1353c4fad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/building/glass/light rolling.wav using Guid(3e7df20f033206d4cbf35ca1353c4fad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2eedca51c2451da35376990fc19b124') in 0.010552 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.273076 seconds.
+  path: Assets/Sounds/bird
+  artifactKey: Guid(bb8ec94e51f670c449e44aecf163add5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird using Guid(bb8ec94e51f670c449e44aecf163add5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ddf7bde74e88452d533cffcccdc13cc') in 0.000357 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.262811 seconds.
+  path: Assets/Sounds/bird/terence
+  artifactKey: Guid(9d423b2ae955a5d4e8edf17e8b0394df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird/terence using Guid(9d423b2ae955a5d4e8edf17e8b0394df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bb0459ac43a40bb4ca8eeb3f02daddc') in 0.000338 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.099262 seconds.
+  path: Assets/Sounds/bird/terence/terence_fly.wav
+  artifactKey: Guid(6794938a278573b489ebee4857881b98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird/terence/terence_fly.wav using Guid(6794938a278573b489ebee4857881b98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21c6be08b0ccfe9c3af5e327d8d22668') in 0.010800 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.464806 seconds.
+  path: Assets/Sounds/bird/red
+  artifactKey: Guid(4f79acc73070dd848afa4991d1733a7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird/red using Guid(4f79acc73070dd848afa4991d1733a7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ecf7327d745e3956ac99f1e07b55c1e') in 0.000344 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.066064 seconds.
+  path: Assets/Sounds/bird/red/bird 01 collision a1.wav
+  artifactKey: Guid(949c47c076845e942beb6a34e5255e9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird/red/bird 01 collision a1.wav using Guid(949c47c076845e942beb6a34e5255e9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6dc792bad464f26106eece3596a61ae') in 0.009300 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.002751 seconds.
+  path: Assets/Sounds/bird/red/bird 01 collision a3.wav
+  artifactKey: Guid(359d2fbe36df4a04f8e4c60130be7d28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird/red/bird 01 collision a3.wav using Guid(359d2fbe36df4a04f8e4c60130be7d28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f22d1cc2e2a8cc071b3d4c8ac61fc0d0') in 0.010508 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000937 seconds.
+  path: Assets/Sounds/bird/red/bird 01 collision a4_low.wav
+  artifactKey: Guid(6d4ba7a37d54b4b49af75dcb5dfa844f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird/red/bird 01 collision a4_low.wav using Guid(6d4ba7a37d54b4b49af75dcb5dfa844f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3fe5a37b248e94e3c13952ad8738961') in 0.009093 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.002115 seconds.
+  path: Assets/Sounds/bird/red/bird 01 select.wav
+  artifactKey: Guid(23779adc2f5e00d41894801cfe5d8679) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/bird/red/bird 01 select.wav using Guid(23779adc2f5e00d41894801cfe5d8679) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3293d94010131d2f787f2f3254fbfb7e') in 0.008889 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 43.265679 seconds.
+  path: Assets/Sounds/Ambient
+  artifactKey: Guid(326a57750d99e9746966154c67673706) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/Ambient using Guid(326a57750d99e9746966154c67673706) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '871bd5f55aff5efd56c3440b9def54a5') in 0.000332 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.056919 seconds.
+  path: Assets/Sounds/Ambient/ab_cave_ambient.mp3
+  artifactKey: Guid(d2af40b6fc23f1646bc5655bc0803385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/Ambient/ab_cave_ambient.mp3 using Guid(d2af40b6fc23f1646bc5655bc0803385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59551b511f285705acdf1d8f4be17b5c') in 0.010767 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.002402 seconds.
+  path: Assets/Sounds/Ambient/ambient_green_jungleish.mp3
+  artifactKey: Guid(fc3bf8f03639bd74980cde6506061f82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/Ambient/ambient_green_jungleish.mp3 using Guid(fc3bf8f03639bd74980cde6506061f82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92d1f801928b279769c5706bc4a8a100') in 0.011399 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

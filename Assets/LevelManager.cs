@@ -20,12 +20,17 @@ public class LevelData
 public class LevelManager : MonoBehaviour
 {
     [Header("Available Objects to Place")]
-    public GameObject[] placeablePrefabs; // Assign in Inspector
+    [SerializeField] private GameObject[] placeablePrefabs; // Assign in Inspector
 
     [Header("Save Settings")]
-    public string saveFileName = "customLevel.json";
+    [SerializeField] private string saveFileName = "customLevel.json";
 
     private List<GameObject> placedObjects = new List<GameObject>();
+
+    [Header("Play game settings")]
+    private BrickManager brickManager;
+
+    private List<BrickManager> brickManagerScripts = new List<BrickManager>();
 
     // Called by UI button to place a specific prefab
     public void PlaceObject(int prefabIndex)
@@ -38,6 +43,11 @@ public class LevelManager : MonoBehaviour
         GameObject obj = Instantiate(placeablePrefabs[prefabIndex], spawnPos, Quaternion.identity);
         obj.transform.localScale = Vector3.one * 0.25f;
         placedObjects.Add(obj);
+        brickManager = obj.GetComponent<BrickManager>();
+        brickManagerScripts.Add(brickManager);
+        brickManager.buildMode = true;
+        brickManager.SwitchMode();
+        brickManager = null;
     }
 
     // Save all placed objects to JSON
@@ -94,6 +104,15 @@ public class LevelManager : MonoBehaviour
         }
 
         Debug.Log("Level loaded.");
+    }
+
+    public void PlayGame()
+    {
+        foreach (BrickManager brickScript in brickManagerScripts)
+        {
+            brickScript.buildMode = !brickScript.buildMode;
+            brickScript.SwitchMode();
+        }
     }
 
     // Helper: find prefab by name

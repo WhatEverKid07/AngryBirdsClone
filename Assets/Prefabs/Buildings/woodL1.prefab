@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4799010340538591126}
   - component: {fileID: 5890117274017975150}
-  - component: {fileID: -6910085008080981046}
   - component: {fileID: -210498185517054985}
   - component: {fileID: -8482360729635854614}
   - component: {fileID: -4434143629293662410}
+  - component: {fileID: -6910085008080981046}
+  - component: {fileID: -6020067301076884976}
+  - component: {fileID: 1295174903788110357}
   m_Layer: 0
   m_Name: woodL1
   m_TagString: Brick
@@ -88,54 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6910085008080981046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540302564538108758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5f806dfcb14154783a259d007def22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteList:
-  - {fileID: -921863230, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
-  - {fileID: -751612545, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
-  - {fileID: 656164732, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
-  - {fileID: -10836642, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
-  health: 100
-  destroyScore: 500
-  soundListDestroy:
-  - {fileID: 8300000, guid: 85c8cf1bf3528974eb27e6694b803846, type: 3}
-  - {fileID: 8300000, guid: 3e7ff90b6f8e3a44aa15519738e1938f, type: 3}
-  - {fileID: 8300000, guid: d7f898932fe723148a7e9156e045e6dc, type: 3}
-  soundListCollide:
-  - {fileID: 8300000, guid: 777d106802dccda448f59edf97f9806f, type: 3}
-  - {fileID: 8300000, guid: 19473496f4966a7468a30a4e5017d7a8, type: 3}
-  - {fileID: 8300000, guid: 6046b711537203c43942457174a4fa1b, type: 3}
-  - {fileID: 8300000, guid: 7a5dbfa24f1bbcb4f8c3f08b599983cc, type: 3}
-  - {fileID: 8300000, guid: e4b2140bda8e9ba4497c6d9c7539fa7c, type: 3}
-  - {fileID: 8300000, guid: cc3982263c9884848b3bb12cb79ea966, type: 3}
-  soundListDamage:
-  - {fileID: 8300000, guid: 897bf638066d34c4782f5d6e397f6360, type: 3}
-  - {fileID: 8300000, guid: 5db52ef6974cc1e4aa8dac807549883a, type: 3}
-  - {fileID: 8300000, guid: e067d22f45735b344a11720c9034978e, type: 3}
-  dieText: {fileID: 5519722601771717642, guid: 479611904eaae874ea2b68e2d5cd05b0, type: 3}
-  woodParticle: {fileID: 5363654032375991646, guid: 75a872ba4aa6efe47891ebf4e0771d64,
-    type: 3}
-  explosionParticlePrefab: {fileID: 0}
-  color:
-    serializedVersion: 2
-    rgba: 4294967295
-  outlineColor:
-    serializedVersion: 2
-    rgba: 4278205550
-  materialType: 0
-  isTnt: 0
-  currentHealth: 0
-  spriteRenderer: {fileID: 0}
 --- !u!61 &-210498185517054985
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,6 +100,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -275,7 +248,92 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6910085008080981046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540302564538108758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f806dfcb14154783a259d007def22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteList:
+  - {fileID: -921863230, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
+  - {fileID: -751612545, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
+  - {fileID: 656164732, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
+  - {fileID: -10836642, guid: 2288a53a3131d4c4ca61ba46d03f0b8f, type: 3}
+  health: 100
+  destroyScore: 500
+  soundListDestroy:
+  - {fileID: 8300000, guid: 85c8cf1bf3528974eb27e6694b803846, type: 3}
+  - {fileID: 8300000, guid: 3e7ff90b6f8e3a44aa15519738e1938f, type: 3}
+  - {fileID: 8300000, guid: d7f898932fe723148a7e9156e045e6dc, type: 3}
+  soundListCollide:
+  - {fileID: 8300000, guid: 777d106802dccda448f59edf97f9806f, type: 3}
+  - {fileID: 8300000, guid: 19473496f4966a7468a30a4e5017d7a8, type: 3}
+  - {fileID: 8300000, guid: 6046b711537203c43942457174a4fa1b, type: 3}
+  - {fileID: 8300000, guid: 7a5dbfa24f1bbcb4f8c3f08b599983cc, type: 3}
+  - {fileID: 8300000, guid: e4b2140bda8e9ba4497c6d9c7539fa7c, type: 3}
+  - {fileID: 8300000, guid: cc3982263c9884848b3bb12cb79ea966, type: 3}
+  soundListDamage:
+  - {fileID: 8300000, guid: 897bf638066d34c4782f5d6e397f6360, type: 3}
+  - {fileID: 8300000, guid: 5db52ef6974cc1e4aa8dac807549883a, type: 3}
+  - {fileID: 8300000, guid: e067d22f45735b344a11720c9034978e, type: 3}
+  dieText: {fileID: 5519722601771717642, guid: 479611904eaae874ea2b68e2d5cd05b0, type: 3}
+  woodParticle: {fileID: 5363654032375991646, guid: 75a872ba4aa6efe47891ebf4e0771d64,
+    type: 3}
+  explosionParticlePrefab: {fileID: 0}
+  color:
+    serializedVersion: 2
+    rgba: 4294967295
+  outlineColor:
+    serializedVersion: 2
+    rgba: 4278205550
+  materialType: 0
+  isTnt: 0
+  currentHealth: 0
+  spriteRenderer: {fileID: 0}
+--- !u!114 &-6020067301076884976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540302564538108758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5683b8c721b2d4382206e31ef417ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapRotation: 1
+  rotationStep: 45
+  rotationSpeed: 90
+  snapCooldown: 0.2
+--- !u!114 &1295174903788110357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540302564538108758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd626d5587fdd049bfd85819f3ba8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildMode: 1
+  brickScript: {fileID: 0}
+  objMove: {fileID: 0}
