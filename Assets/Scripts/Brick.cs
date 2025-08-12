@@ -38,7 +38,7 @@ public class Brick : MonoBehaviour
 
     Score score;
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     private void FixedUpdate()
     {
@@ -52,18 +52,10 @@ public class Brick : MonoBehaviour
             die();
         }
     }
-    public void Start()
-    {
-        currentHealth = health;
-
-    }
     private void Awake()
     {
-        if (!active)
-        {
-            return;
-        }
         AwakeMethod();
+        //Debug.Log("Brick Awake");
     }
     private void AwakeMethod()
     {
@@ -72,6 +64,7 @@ public class Brick : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         score.maxScoreUpdate(destroyScore);
+        currentHealth = health;
     }
 
     public void die()
@@ -133,18 +126,6 @@ public class Brick : MonoBehaviour
         float damage = 0;
 
         Rigidbody2D colRB = col.gameObject.GetComponent<Rigidbody2D>();
-
-
-
-
-
-
-
-
-
-
-
-
 
         // birdcheck 
         if (col.gameObject.tag == "Bird")
