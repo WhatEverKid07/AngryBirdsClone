@@ -259,8 +259,10 @@ MonoBehaviour:
     rgba: 4278205550
   materialType: 0
   isTnt: 0
+  active: 0
   currentHealth: 0
   spriteRenderer: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!60 &-6562292977012139436
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -360,5 +362,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildMode: 1
-  brickScript: {fileID: 0}
-  objMove: {fileID: 0}
+  brickScript: {fileID: -6910085008080981046}
+  objMove: {fileID: 2306796130782618007}

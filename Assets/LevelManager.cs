@@ -20,7 +20,7 @@ public class LevelData
 public class LevelManager : MonoBehaviour
 {
     [Header("Available Objects to Place")]
-    [SerializeField] private GameObject[] placeablePrefabs; // Assign in Inspector
+    [SerializeField] private GameObject[] placeablePrefabs;
 
     [Header("Save Settings")]
     [SerializeField] private string saveFileName = "customLevel.json";
@@ -30,12 +30,11 @@ public class LevelManager : MonoBehaviour
     [Header("Play game settings")]
     private BrickManager brickManager;
 
-    private List<BrickManager> brickManagerScripts = new List<BrickManager>();
+    public List<BrickManager> brickManagerScripts = new List<BrickManager>();
 
-    // Called by UI button to place a specific prefab
     public void PlaceObject(int prefabIndex)
     {
-        if (prefabIndex < 0 || prefabIndex >= placeablePrefabs.Length) return;
+        if (prefabIndex < 0 || prefabIndex >= placeablePrefabs.Length) return; // Checks if there are placable objects
 
         Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         spawnPos.z = 0f;
@@ -43,11 +42,13 @@ public class LevelManager : MonoBehaviour
         GameObject obj = Instantiate(placeablePrefabs[prefabIndex], spawnPos, Quaternion.identity);
         obj.transform.localScale = Vector3.one * 0.25f;
         placedObjects.Add(obj);
+        
         brickManager = obj.GetComponent<BrickManager>();
         brickManagerScripts.Add(brickManager);
-        brickManager.buildMode = true;
-        brickManager.SwitchMode();
+        //brickManager.buildMode = true;
+        //brickManager.SwitchMode();
         brickManager = null;
+        
     }
 
     // Save all placed objects to JSON
@@ -110,8 +111,17 @@ public class LevelManager : MonoBehaviour
     {
         foreach (BrickManager brickScript in brickManagerScripts)
         {
+            brickScript.SetLocation();
             brickScript.buildMode = !brickScript.buildMode;
-            brickScript.SwitchMode();
+        }
+    }
+
+    public void BuildGame()
+    {
+        foreach (BrickManager brickScript in brickManagerScripts)
+        {
+            brickScript.ResetLocation();
+            brickScript.buildMode = !brickScript.buildMode;
         }
     }
 

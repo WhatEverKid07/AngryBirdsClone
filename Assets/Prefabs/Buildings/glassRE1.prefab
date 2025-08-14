@@ -304,8 +304,10 @@ MonoBehaviour:
     rgba: 4292126208
   materialType: 1
   isTnt: 0
+  active: 0
   currentHealth: 0
   spriteRenderer: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &-8721513062147983166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,5 +337,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildMode: 1
-  brickScript: {fileID: 0}
-  objMove: {fileID: 0}
+  brickScript: {fileID: -6910085008080981046}
+  objMove: {fileID: -8721513062147983166}

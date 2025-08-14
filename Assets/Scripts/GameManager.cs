@@ -7,12 +7,12 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
-
-
     // vars
 
     public CameraFollow cameraFollow;
     public SlingShot slingshot;
+
+    [SerializeField] private bool buildMode = false;
 
     [HideInInspector]
     public static GameState CurrentGameState = GameState.Start;

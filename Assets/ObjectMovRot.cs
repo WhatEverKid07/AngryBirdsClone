@@ -1,44 +1,38 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 
-public class ObjectMov : MonoBehaviour
+public class ObjectMovRot : MonoBehaviour
 {
     private bool dragging = false;
     private Vector3 offset;
-
+    
     [Header("Rotation Settings")]
-    public bool snapRotation = true;
-    public float rotationStep = 45f;
-    public float rotationSpeed = 90f;
-    public float snapCooldown = 0.2f;
+    [SerializeField] private bool snapRotation = true;
+    [SerializeField] private float rotationStep = 45f;
+    [SerializeField] private float rotationSpeed = 90f;
+    [SerializeField] private float snapCooldown = 0.2f;
 
     private float snapTimer = 0f;
 
     void Update()
     {
-        // Drag movement
         if (dragging)
         {
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorld.z = transform.position.z;
             transform.position = mouseWorld + offset;
         }
-
-        // Snap cooldown countdown
         if (snapTimer > 0f)
             snapTimer -= Time.deltaTime;
     }
 
     private void OnMouseDown()
     {
-        // If right-click over object → rotate
         if (Input.GetMouseButton(1))
         {
             RotateObject();
-            return; // Don't start dragging
+            return;
         }
-
-        // If left-click over object → start drag
         if (Input.GetMouseButton(0))
         {
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -49,13 +43,10 @@ public class ObjectMov : MonoBehaviour
     }
 
     private void OnMouseUp()
-    {
-        dragging = false;
-    }
+    { dragging = false; }
 
     private void OnMouseOver()
     {
-        // Optional: hold right-click while hovering to rotate continuously
         if (Input.GetMouseButton(1) && !dragging)
         {
             RotateObject();
@@ -71,10 +62,7 @@ public class ObjectMov : MonoBehaviour
                 transform.rotation *= Quaternion.Euler(0, 0, rotationStep);
                 snapTimer = snapCooldown;
             }
-        }
-        else
-        {
-            transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.World);
-        }
+        } 
+        else { transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.World); }
     }
 }
