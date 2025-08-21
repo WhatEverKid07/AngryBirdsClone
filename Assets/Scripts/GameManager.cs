@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // initialize slingshot and game state
+        if (buildMode) { return; }
 
         CurrentGameState = GameState.Start;
         slingshot.enabled = true;
@@ -53,6 +54,21 @@ public class GameManager : MonoBehaviour
         vectorsCopy = vectors;
     }
 
+    public void StartMethod()
+    {
+        CurrentGameState = GameState.Start;
+        slingshot.enabled = true;
+
+        slingshot.BirdThrown -= Slingshot_BirdThrown; slingshot.BirdThrown += Slingshot_BirdThrown;
+        birdList();
+
+        foreach (var obj in Birds)
+        {
+            vectors.Add(obj.transform.position);
+        }
+
+        vectorsCopy = vectors;
+    }
 
     private void Awake()
     {

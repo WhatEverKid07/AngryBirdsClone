@@ -19,6 +19,10 @@ public class LevelData
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private Camera worldCamera;  // Camera rendering your 3D world
+    [SerializeField] private Canvas canvas;       // UI canvas
+    [SerializeField] private float offsetY = 0.5f;
+
     [Header("Available Objects to Place")]
     [SerializeField] private GameObject[] placeablePrefabs;
 
@@ -28,27 +32,45 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> placedObjects = new List<GameObject>();
 
     [Header("Play game settings")]
+    // Fpr bricks
     private BrickManager brickManager;
+    private List<BrickManager> brickManagerScripts = new List<BrickManager>();
 
-    public List<BrickManager> brickManagerScripts = new List<BrickManager>();
+    // For Pigs
+    private PigManager pigManager;
+    private List<PigManager> pigManagerScripts = new List<PigManager>();
 
-    public void PlaceObject(int prefabIndex)
+    public void PlaceObject(int prefabIndex, RectTransform uiButtonRect)
     {
-        if (prefabIndex < 0 || prefabIndex >= placeablePrefabs.Length) return; // Checks if there are placable objects
+        if (prefabIndex < 0 || prefabIndex >= placeablePrefabs.Length) return;
 
-        Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        spawnPos.z = 0f;
-        spawnPos.y += 0.5f;
-        GameObject obj = Instantiate(placeablePrefabs[prefabIndex], spawnPos, Quaternion.identity);
-        obj.transform.localScale = Vector3.one * 0.25f;
-        placedObjects.Add(obj);
-        
-        brickManager = obj.GetComponent<BrickManager>();
-        brickManagerScripts.Add(brickManager);
-        //brickManager.buildMode = true;
-        //brickManager.SwitchMode();
-        brickManager = null;
-        
+        Vector3 worldPos;
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            uiButtonRect,
+            RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, uiButtonRect.position),
+            worldCamera,
+            out worldPos))
+        {
+            Vector3 spawnPos = worldPos + Vector3.up * offsetY;
+            spawnPos.z = 0f;
+
+            GameObject obj = Instantiate(placeablePrefabs[prefabIndex], spawnPos, Quaternion.identity);
+            obj.transform.localScale = Vector3.one * 0.25f;
+            placedObjects.Add(obj);
+
+            brickManager = obj.GetComponent<BrickManager>();
+            pigManager = obj.GetComponent<PigManager>();
+            if (brickManager != null)
+            {
+                brickManagerScripts.Add(brickManager);
+                brickManager = null;
+            }
+            else if (pigManager != null)
+            {
+                pigManagerScripts.Add(pigManager);
+                pigManager = null;
+            }
+        }
     }
 
     // Save all placed objects to JSON
@@ -114,6 +136,11 @@ public class LevelManager : MonoBehaviour
             brickScript.SetLocation();
             brickScript.buildMode = !brickScript.buildMode;
         }
+        foreach (PigManager pigScript in pigManagerScripts)
+        {
+            pigScript.SetLocation();
+            pigScript.buildMode = !pigScript.buildMode;
+        }
     }
 
     public void BuildGame()
@@ -122,6 +149,11 @@ public class LevelManager : MonoBehaviour
         {
             brickScript.ResetLocation();
             brickScript.buildMode = !brickScript.buildMode;
+        }
+        foreach (PigManager pigScript in pigManagerScripts)
+        {
+            pigScript.ResetLocation();
+            pigScript.buildMode = !pigScript.buildMode;
         }
     }
 

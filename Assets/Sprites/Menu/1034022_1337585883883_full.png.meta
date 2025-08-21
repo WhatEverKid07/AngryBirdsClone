@@ -204,7 +204,7 @@ TextureImporter:
         width: 119
         height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,6 +212,27 @@ TextureImporter:
       bones: []
       spriteID: 978254688d1f784438c58bca12fd0b17
       internalID: -1323636301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1034022_1337585883883_full_0
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 9
+        width: 117
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dd363398124bd14b9a9a80beab38f7d
+      internalID: -916008347
       vertices: []
       indices: 
       edges: []
@@ -227,6 +248,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      1034022_1337585883883_full_0: -916008347
       CustomItemBox: -1323636301
       episode1: 1493847838
   mipmapLimitGroupName: 

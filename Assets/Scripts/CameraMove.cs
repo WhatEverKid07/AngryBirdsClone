@@ -26,8 +26,6 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
-
         if (SlingShot.slingshotState != SlingshotState.UserPulling && GameManager.CurrentGameState == GameState.Playing && cameraFollow.IsFollowing == false)
         {
 

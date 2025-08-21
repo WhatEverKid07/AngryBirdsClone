@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5000000}
   - component: {fileID: 11400000}
   - component: {fileID: 8200000}
+  - component: {fileID: -204705550257555922}
+  - component: {fileID: 6402617438863287956}
   m_Layer: 0
   m_Name: ForemanPig
   m_TagString: Pig
@@ -74,9 +76,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 151119413
-  m_SortingLayer: 7
-  m_SortingOrder: 0
+  m_SortingLayerID: -596946075
+  m_SortingLayer: 8
+  m_SortingOrder: 1
   m_Sprite: {fileID: 535817296, guid: cd4ee6c8b8975944a8aed4066390b405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,6 +100,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -121,6 +142,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -275,3 +302,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-204705550257555922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5683b8c721b2d4382206e31ef417ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapRotation: 1
+  rotationStep: 45
+  rotationSpeed: 90
+  snapCooldown: 0.2
+--- !u!114 &6402617438863287956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1133df8dff7fec41b011493e8698867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildMode: 1
+  brickScript: {fileID: 11400000}
+  objMove: {fileID: -204705550257555922}

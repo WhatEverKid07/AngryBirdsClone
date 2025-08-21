@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -12,8 +13,23 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float maxX = 10f;
     [SerializeField] private float minY = -5f;
     [SerializeField] private float maxY = 5f;
-    
+
+    /*
+    [Header("Zoom Settings")]
+    private Camera Cam;
+    [SerializeField] private float CamSize;
+    [SerializeField] private float zoomDelta;
+    [SerializeField] private float minZoom;
+    [SerializeField] private float maxZoom;
+    */
+
     private Vector3 dragOrigin;
+
+    private void Start()
+    {
+        //Cam = Camera.main;
+        //CamSize = Cam.orthographicSize;
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(2))
@@ -30,5 +46,13 @@ public class CameraController : MonoBehaviour
                 transform.position.z
             );
         }
+        /*
+        // get the current size + the scrollwheel change
+        zoomDelta = CamSize - Input.mouseScrollDelta.y;
+        // constrain zoom
+        CamSize = Mathf.Clamp(zoomDelta, minZoom, maxZoom);
+        // apply zoom to field of view
+        Cam.orthographicSize = CamSize;
+        */
     }
 }
