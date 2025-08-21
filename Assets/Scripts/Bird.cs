@@ -74,8 +74,16 @@ public class Bird : MonoBehaviour
 
     private bool isAdded = false;
 
+    [SerializeField] private bool bird_Is_Active = false;
+
     private void Start()
     {
+        if (!bird_Is_Active)
+        {
+            rb.isKinematic = true;
+            return;
+        }
+
         if (!gameObject.name.Contains("Clone"))
         {
             BirdColliderRadiusNormal = collider.radius;
@@ -87,7 +95,6 @@ public class Bird : MonoBehaviour
     }
     private void Awake()
     {
-
         cachedScale = transform.localScale;
 
         rb = GetComponent<Rigidbody2D>();
@@ -96,9 +103,33 @@ public class Bird : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
 
     }
+    public void Bird_Activate()
+    {
+        // From Awake
+        /*
+        cachedScale = transform.localScale;
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
+        collider = GetComponent<CircleCollider2D>();
+        */
+
+        bird_Is_Active = true;
+        // From Start
+        if (!gameObject.name.Contains("Clone"))
+        {
+            BirdColliderRadiusNormal = collider.radius;
+            rb.isKinematic = true;
+            State = BirdState.BeforeThrown;
+            StartCoroutine(animationDelay());
+            collider.radius = Constants.BirdColliderRadiusBig;
+        }
+    }
 
     private void FixedUpdate()
     {
+        if (!bird_Is_Active)
+            return;
 
         if (State == BirdState.Thrown && rb.velocity.sqrMagnitude <= Constants.MinVelocity)
         {
@@ -111,9 +142,11 @@ public class Bird : MonoBehaviour
 
     private void Update()
     {
+        if (!bird_Is_Active)
+            return;
 
         //disable collider on inactive birds
-        if(gameObject != GameManager.Birds[GameManager.currentBirdIndex] && !Thrown) 
+        if (gameObject != GameManager.Birds[GameManager.currentBirdIndex] && !Thrown) 
         {
             collider.enabled = false;
             slingShotCol.enabled = false;

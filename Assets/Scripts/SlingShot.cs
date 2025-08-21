@@ -6,54 +6,39 @@ using DG.Tweening;
 
 public class SlingShot : MonoBehaviour
 {
-
-
-    private Vector3 SlingshotMiddleVector;
+    public Vector3 SlingshotMiddleVector;
 
     [HideInInspector]
     public SlingshotState slingshotState;
-
-
-    public Transform LeftSlingshotOrigin, RightSlingshotOrigin;
-
-
-    public LineRenderer SlingshotLineRenderer1;
-    public LineRenderer SlingshotLineRenderer2;
-
-
-    public LineRenderer TrajectoryLineRenderer;
+    [SerializeField] private Transform LeftSlingshotOrigin, RightSlingshotOrigin;
+    [SerializeField] private LineRenderer SlingshotLineRenderer1;
+    [SerializeField] private LineRenderer SlingshotLineRenderer2;
+    [SerializeField] private LineRenderer TrajectoryLineRenderer;
 
     [HideInInspector]
-
     public GameObject BirdToThrow;
-
     [SerializeField] public GameObject slingShotEnd;
-
-
     public Transform BirdWaitPosition;
-
-    public float ThrowSpeed;
+    [SerializeField] private float ThrowSpeed;
 
     [HideInInspector]
     public float TimeSinceThrown;
-
     private AudioSource audio;
-
     private bool lastPullCheck = false;
-
-
     [SerializeField] private AudioClip[] militaryClips;
-
     [SerializeField] private AudioClip[] shootClips;
 
+    [SerializeField] private bool slingShot_Is_Active = false;
     private void playSound(AudioClip clip)
     {
         audio.PlayOneShot(clip);
     }
     private void Awake()
     {
-        slingShotEnd.SetActive(true);
+        if (!slingShot_Is_Active)
+            return;
 
+        slingShotEnd.SetActive(true);
         //SlingshotLineRenderer1.sortingLayerName = "Foreground";
         //SlingshotLineRenderer2.sortingLayerName = "Foreground";
         //TrajectoryLineRenderer.sortingLayerName = "Foreground";
@@ -78,9 +63,37 @@ public class SlingShot : MonoBehaviour
         SlingshotLineRenderer2.SetPosition(1, BirdWaitPosition.transform.position);
     }
 
+    public void SlingShot_Activate()
+    {
+        slingShotEnd.SetActive(true);
+        slingShot_Is_Active = true;
+        slingshotState = SlingshotState.Idle;
+        SlingshotLineRenderer1.SetPosition(0, LeftSlingshotOrigin.position);
+        SlingshotLineRenderer2.SetPosition(0, RightSlingshotOrigin.position);
+        SlingshotMiddleVector = new Vector3((LeftSlingshotOrigin.position.x + RightSlingshotOrigin.position.x) / 2,
+            (LeftSlingshotOrigin.position.y + RightSlingshotOrigin.position.y) / 2, 0);
+        audio = gameObject.GetComponent<AudioSource>();
+        audio.PlayOneShot(militaryClips[UnityEngine.Random.Range(0, 4)]);
+        SetSlingshotLineRenderersActive(true);
+        SlingshotLineRenderer1.SetPosition(1, BirdWaitPosition.transform.position);
+        SlingshotLineRenderer2.SetPosition(1, BirdWaitPosition.transform.position);
+    }
+    public void SlingShot_Reset()
+    {
+        slingShot_Is_Active = false;
+        slingShotEnd.SetActive(false);
+        slingshotState = SlingshotState.Idle;
+        SlingshotMiddleVector = new Vector3(0, 0, 0);
+        SetSlingshotLineRenderersActive(false);
+        SlingshotLineRenderer1.SetPosition(1, BirdWaitPosition.transform.position);
+        SlingshotLineRenderer2.SetPosition(1, BirdWaitPosition.transform.position);
+    }
 
     private void Update()
     {
+        if (!slingShot_Is_Active)
+            return;
+
         if (BirdToThrow != null)
         {
             
