@@ -9,10 +9,8 @@ public class GameManager : MonoBehaviour
 {
     // vars
 
-    public CameraFollow cameraFollow;
-    public SlingShot slingshot;
-
-    [SerializeField] private bool buildMode = false;
+    [SerializeField] private CameraFollow cameraFollow;
+    [SerializeField] private SlingShot slingshot;
 
     [HideInInspector]
     public static GameState CurrentGameState = GameState.Start;
@@ -32,11 +30,13 @@ public class GameManager : MonoBehaviour
 
     public static int birdsNumber;
 
-
+    [SerializeField] private bool gameManager_Is_Active = false;
 
     // voids 
     private void Start()
     {
+        if (!gameManager_Is_Active)
+            return;
         // initialize slingshot and game state
 
         CurrentGameState = GameState.Start;
@@ -56,9 +56,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
-        //reset static vars
-
         AliveBirds = null;
         vectors = null;
         vectorsCopy = null;
@@ -66,6 +63,10 @@ public class GameManager : MonoBehaviour
         Birds = null;
         BirdsCopy = null;
         Pigs = null;
+
+        if (!gameManager_Is_Active)
+            return;
+        
         currentBirdIndex = 0;
 
         // define lists
@@ -86,8 +87,90 @@ public class GameManager : MonoBehaviour
         Time.fixedDeltaTime = 0.01f;
     }
 
+    public void GameManager_Activate()
+    {
+        // From Awake
+        //reset static vars
+
+
+        currentBirdIndex = 0;
+
+        // define lists
+
+        AliveBirds = new List<GameObject>();
+        Bricks = new List<GameObject>(GameObject.FindGameObjectsWithTag("Brick"));
+        Pigs = new List<GameObject>(GameObject.FindGameObjectsWithTag("Pig"));
+
+        Birds = new List<GameObject>();
+        BirdsCopy = new List<GameObject>();
+        vectors = new List<Vector2>();
+        vectorsCopy = new List<Vector2>();
+
+
+        // change physics back to normal
+
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.01f;
+
+        // From Start
+        // initialize slingshot and game state
+
+        CurrentGameState = GameState.Start;
+        slingshot.enabled = true;
+
+        slingshot.BirdThrown -= Slingshot_BirdThrown; slingshot.BirdThrown += Slingshot_BirdThrown;
+        birdList();
+
+        foreach (var obj in Birds)
+        {
+            vectors.Add(obj.transform.position);
+        }
+
+        vectorsCopy = vectors;
+    }
+
+    public void GameManager_Reset()
+    {
+        gameManager_Is_Active = false;
+        // Reset Game State
+        CurrentGameState = GameState.Start;
+
+        // Reset lists (fresh like Awake)
+        Birds = new List<GameObject>();
+        BirdsCopy = new List<GameObject>();
+        AliveBirds = new List<GameObject>();
+        Bricks = new List<GameObject>();
+        Pigs = new List<GameObject>();
+        vectors = new List<Vector2>();
+        vectorsCopy = new List<Vector2>();
+
+        birdsNumber = 0;
+        currentBirdIndex = 0;
+
+        // Reset slingshot
+        slingshot.enabled = true;
+        slingshot.slingshotState = SlingshotState.Idle;
+        slingshot.BirdThrown -= Slingshot_BirdThrown; // avoid double subscription
+        slingshot.BirdThrown += Slingshot_BirdThrown;
+
+        // Reset camera
+        cameraFollow.IsFollowing = false;
+        cameraFollow.BirdToFollow = null;
+
+        // Reset Time/Physics
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.01f;
+
+        // Kill all active tweens (optional)
+        DG.Tweening.DOTween.KillAll();
+
+        Debug.Log("GameManager Reset (lists cleared, fresh state)");
+    }
+
     private void Update()
     {
+        if (!gameManager_Is_Active)
+            return;
 
         if (AllPigsDestroyed())
         {

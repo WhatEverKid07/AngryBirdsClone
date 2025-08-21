@@ -25,11 +25,11 @@ public class CameraFollow : MonoBehaviour
         {
             if (BirdToFollow != null) //bird will be destroyed if it goes out of the scene
             {
-                cam.orthographicSize = GetComponent<CameraPinchToZoom>().orthographicSizeMax;
+                //cam.orthographicSize = GetComponent<CameraPinchToZoom>().orthographicSizeMax;
                 var birdPosition = BirdToFollow.transform.position;
-                float x = Mathf.Clamp(birdPosition.x, 36f / (cam.orthographicSize - (GetComponent<CameraPinchToZoom>().orthographicSizeMin - 2)) * - 1, (cam.orthographicSize - (GetComponent<CameraPinchToZoom>().orthographicSizeMin - 2)));
+                //float x = Mathf.Clamp(birdPosition.x, 36f / (cam.orthographicSize - (GetComponent<CameraPinchToZoom>().orthographicSizeMin - 2)) * - 1, (cam.orthographicSize - (GetComponent<CameraPinchToZoom>().orthographicSizeMin - 2)));
                 //camera follows bird's x position
-                transform.DOMove(new Vector3(x, StartingPosition.y, StartingPosition.z), 1f);
+                //transform.DOMove(new Vector3(x, StartingPosition.y, StartingPosition.z), 1f);
             }
             else
                 IsFollowing = false;
