@@ -7,14 +7,21 @@ public class NewLevelManager : MonoBehaviour
     [System.Serializable]
     private class SavedObject
     {
-        public GameObject prefab;
+        public string prefabName;
         public Vector3 position;
         public Quaternion rotation;
         public Vector3 scale;
     }
 
+    // --- Lists of prefabs you want to save/load ---
+    [Header("Prefabs to Save/Load")]
+    public List<GameObject> birdPrefabs = new List<GameObject>();
+    public List<GameObject> brickPrefabs = new List<GameObject>();
+
     private List<SavedObject> birdList = new List<SavedObject>();
     private List<SavedObject> brickList = new List<SavedObject>();
+
+    private List<GameObject> placedObjects = new List<GameObject>(); // Keep track of instantiated objects
 
     // --- Call this to SAVE ---
     public void SaveLevel()
@@ -23,51 +30,80 @@ public class NewLevelManager : MonoBehaviour
         brickList.Clear();
 
         // Save Birds
-        GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
-        foreach (GameObject b in birds)
+        foreach (GameObject prefab in birdPrefabs)
         {
+            if (prefab == null) continue;
+
             SavedObject so = new SavedObject();
-            so.prefab = b;
-            so.position = b.transform.position;
-            so.rotation = b.transform.rotation;
-            so.scale = b.transform.localScale;
+            so.prefabName = prefab.name;
+            so.position = prefab.transform.position;
+            so.rotation = prefab.transform.rotation;
+            so.scale = prefab.transform.localScale;
             birdList.Add(so);
         }
 
         // Save Bricks
-        GameObject[] bricks = GameObject.FindGameObjectsWithTag("Brick");
-        foreach (GameObject br in bricks)
+        foreach (GameObject prefab in brickPrefabs)
         {
+            if (prefab == null) continue;
+
             SavedObject so = new SavedObject();
-            so.prefab = br;
-            so.position = br.transform.position;
-            so.rotation = br.transform.rotation;
-            so.scale = br.transform.localScale;
+            so.prefabName = prefab.name;
+            so.position = prefab.transform.position;
+            so.rotation = prefab.transform.rotation;
+            so.scale = prefab.transform.localScale;
             brickList.Add(so);
         }
+
+        Debug.Log("Level saved.");
     }
 
     // --- Call this to LOAD ---
     public void LoadLevel()
     {
-        // Clear existing Birds & Bricks
-        foreach (GameObject b in GameObject.FindGameObjectsWithTag("Bird"))
-            Destroy(b);
-        foreach (GameObject br in GameObject.FindGameObjectsWithTag("Brick"))
-            Destroy(br);
+        // Destroy existing objects
+        foreach (GameObject obj in placedObjects)
+        {
+            if (obj != null) Destroy(obj);
+        }
+        placedObjects.Clear();
 
         // Restore Birds
         foreach (SavedObject so in birdList)
         {
-            GameObject obj = Instantiate(so.prefab, so.position, so.rotation);
-            obj.transform.localScale = so.scale;
+            GameObject prefab = birdPrefabs.Find(p => p.name == so.prefabName);
+            if (prefab != null)
+            {
+                GameObject obj = Instantiate(prefab, so.position, so.rotation);
+                obj.transform.localScale = so.scale;
+
+                // Make sure the object and all components are enabled
+                obj.SetActive(true);
+                foreach (var comp in obj.GetComponents<MonoBehaviour>())
+                    comp.enabled = true;
+
+                placedObjects.Add(obj);
+            }
         }
 
         // Restore Bricks
         foreach (SavedObject so in brickList)
         {
-            GameObject obj = Instantiate(so.prefab, so.position, so.rotation);
-            obj.transform.localScale = so.scale;
+            GameObject prefab = brickPrefabs.Find(p => p.name == so.prefabName);
+            if (prefab != null)
+            {
+                GameObject obj = Instantiate(prefab, so.position, so.rotation);
+                obj.transform.localScale = so.scale;
+
+                // Make sure the object and all components are enabled
+                obj.SetActive(true);
+                foreach (var comp in obj.GetComponents<MonoBehaviour>())
+                    comp.enabled = true;
+
+                placedObjects.Add(obj);
+            }
         }
+
+        Debug.Log("Level loaded.");
     }
 }

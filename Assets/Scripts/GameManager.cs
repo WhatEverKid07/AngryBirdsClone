@@ -38,24 +38,7 @@ public class GameManager : MonoBehaviour
         if (!gameManager_Is_Active)
             return;
         // initialize slingshot and game state
-        if (buildMode) { return; }
 
-        CurrentGameState = GameState.Start;
-        slingshot.enabled = true;
-
-        slingshot.BirdThrown -= Slingshot_BirdThrown; slingshot.BirdThrown += Slingshot_BirdThrown;
-        birdList();
-
-        foreach (var obj in Birds)
-        {
-            vectors.Add(obj.transform.position);
-        }
-
-        vectorsCopy = vectors;
-    }
-
-    public void StartMethod()
-    {
         CurrentGameState = GameState.Start;
         slingshot.enabled = true;
 
@@ -105,10 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void GameManager_Activate()
     {
-        // From Awake
-        //reset static vars
-
-
+        gameManager_Is_Active = true;
         currentBirdIndex = 0;
 
         // define lists
