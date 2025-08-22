@@ -3,6 +3,7 @@ using System.Collections;
 using Assets.Scripts;
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Globalization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bird : MonoBehaviour
@@ -75,9 +76,11 @@ public class Bird : MonoBehaviour
     private bool isAdded = false;
 
     [SerializeField] private bool bird_Is_Active = false;
+    public ObjectMovRot objMoveRot;
 
     private void Start()
     {
+        Debug.Log("Bird_Start");
         if (!bird_Is_Active)
         {
             rb.isKinematic = true;
@@ -95,13 +98,14 @@ public class Bird : MonoBehaviour
     }
     private void Awake()
     {
+        Debug.Log("Bird_Awake");
         cachedScale = transform.localScale;
 
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audio = GetComponent<AudioSource>();
         collider = GetComponent<CircleCollider2D>();
-
+        objMoveRot = GetComponent<ObjectMovRot>();
     }
     public void Bird_Activate()
     {
@@ -113,17 +117,31 @@ public class Bird : MonoBehaviour
         audio = GetComponent<AudioSource>();
         collider = GetComponent<CircleCollider2D>();
         */
+        cachedScale = transform.localScale;
+
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
+        collider = GetComponent<CircleCollider2D>();
+        objMoveRot = GetComponent<ObjectMovRot>();
+
 
         bird_Is_Active = true;
-        // From Start
-        if (!gameObject.name.Contains("Clone"))
+        
+        if (objMoveRot != null)
         {
-            BirdColliderRadiusNormal = collider.radius;
-            rb.isKinematic = true;
-            State = BirdState.BeforeThrown;
-            StartCoroutine(animationDelay());
-            collider.radius = Constants.BirdColliderRadiusBig;
+            objMoveRot.enabled = false;
         }
+        // From Start
+        /*if (!gameObject.name.Contains("Clone"))
+        {
+
+        }*/
+        BirdColliderRadiusNormal = collider.radius;
+        rb.isKinematic = true;
+        State = BirdState.BeforeThrown;
+        StartCoroutine(animationDelay());
+        collider.radius = Constants.BirdColliderRadiusBig;
     }
 
     private void FixedUpdate()

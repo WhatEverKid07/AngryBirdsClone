@@ -28,11 +28,19 @@ public class LevelManager : MonoBehaviour
 
     [Header("Save Settings")]
     [SerializeField] private string saveFileName = "customLevel.json";
+    private string savedLevelJson = null;
 
-    private List<GameObject> placedObjects = new List<GameObject>();
+    public List<GameObject> placedObjects = new List<GameObject>();
 
     [Header("Play game settings")]
-    // Fpr bricks
+    [SerializeField] GameManager gameManager;
+    [SerializeField] SlingShot slingShot;
+
+    // For Birds
+    private Bird bird;
+    public List<Bird> birdScript = new List<Bird>();
+
+    // For bricks
     private BrickManager brickManager;
     private List<BrickManager> brickManagerScripts = new List<BrickManager>();
 
@@ -60,15 +68,21 @@ public class LevelManager : MonoBehaviour
 
             brickManager = obj.GetComponent<BrickManager>();
             pigManager = obj.GetComponent<PigManager>();
+            bird = obj.GetComponent<Bird>();
             if (brickManager != null)
             {
                 brickManagerScripts.Add(brickManager);
                 brickManager = null;
             }
-            else if (pigManager != null)
+            if (pigManager != null)
             {
                 pigManagerScripts.Add(pigManager);
                 pigManager = null;
+            }
+            if (bird != null)
+            {
+                birdScript.Add(bird);
+                bird = null;
             }
         }
     }
@@ -128,23 +142,86 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log("Level loaded.");
     }
+    public void SaveLevelLocally()
+    {
+        LevelData data = new LevelData();
+
+        foreach (var obj in placedObjects)
+        {
+            LevelObjectData objData = new LevelObjectData();
+            objData.prefabName = obj.name.Replace("(Clone)", "").Trim();
+            objData.position = obj.transform.position;
+            objData.rotation = obj.transform.rotation;
+
+            data.objects.Add(objData);
+        }
+
+        // Save as JSON string in memory only
+        savedLevelJson = JsonUtility.ToJson(data, true);
+
+        Debug.Log("Level saved locally (not written to file).");
+    }
+
+    // Load a level from memory instead of file
+    public void LoadLevelLocally()
+    {
+        if (string.IsNullOrEmpty(savedLevelJson))
+        {
+            Debug.LogWarning("No saved level found in memory.");
+            return;
+        }
+
+        // Clear existing objects
+        foreach (var obj in placedObjects)
+        {
+            Destroy(obj);
+        }
+        placedObjects.Clear();
+
+        // Deserialize from memory
+        LevelData data = JsonUtility.FromJson<LevelData>(savedLevelJson);
+
+        foreach (var objData in data.objects)
+        {
+            GameObject prefab = FindPrefabByName(objData.prefabName);
+            if (prefab != null)
+            {
+                GameObject obj = Instantiate(prefab, objData.position, objData.rotation);
+                placedObjects.Add(obj);
+            }
+        }
+
+        Debug.Log("Level loaded from local memory.");
+    }
 
     public void PlayGame()
     {
+        SaveLevelLocally();
+        gameManager.GameManager_Activate();
+        slingShot.SlingShot_Activate();
         foreach (BrickManager brickScript in brickManagerScripts)
         {
-            brickScript.SetLocation();
+            //brickScript.SetLocation();
             brickScript.buildMode = !brickScript.buildMode;
         }
         foreach (PigManager pigScript in pigManagerScripts)
         {
-            pigScript.SetLocation();
+            //pigScript.SetLocation();
             pigScript.buildMode = !pigScript.buildMode;
+            Debug.Log("Pig.Buildmode switch");
+        }
+        foreach (Bird birdScript in birdScript)
+        {
+            if (birdScript != null)
+            {
+                birdScript.Bird_Activate();
+            }
         }
     }
 
     public void BuildGame()
     {
+        /*
         foreach (BrickManager brickScript in brickManagerScripts)
         {
             brickScript.ResetLocation();
@@ -155,6 +232,10 @@ public class LevelManager : MonoBehaviour
             pigScript.ResetLocation();
             pigScript.buildMode = !pigScript.buildMode;
         }
+        */
+        LoadLevelLocally();
+        gameManager.GameManager_Reset();
+        slingShot.SlingShot_Reset();
     }
 
     // Helper: find prefab by name

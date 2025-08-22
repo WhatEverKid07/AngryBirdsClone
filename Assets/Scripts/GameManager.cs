@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(moveBirdToNextPost());
         CurrentGameState = GameState.BirdMovingToSlingshot;
-        AudioPlayer.audio.PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
+        //AudioPlayer.audio.PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
         Birds[currentBirdIndex].transform.DOJump(slingshot.BirdWaitPosition.transform.position, 2f, 1, Vector2.Distance(Birds[currentBirdIndex].transform.position, slingshot.BirdWaitPosition.transform.position) / 2f).OnComplete(() => completedAnimate());
     }
     private void completedAnimate()

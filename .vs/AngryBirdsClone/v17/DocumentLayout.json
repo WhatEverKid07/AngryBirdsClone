@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\assets\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|solutionrelative:assets\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|c:\\users\\eugen\\documents\\github\\angrybirdsclone\\assets\\scripts\\bird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|c:\\users\\eugen\\documents\\github\\angrybirdsclone\\assets\\newlevelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\assets\\newlevelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|solutionrelative:assets\\newlevelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|c:\\users\\eugen\\documents\\github\\angrybirdsclone\\assets\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|solutionrelative:assets\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|c:\\users\\eugen\\documents\\github\\angrybirdsclone\\assets\\scripts\\brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\assets\\scripts\\brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|c:\\users\\eugen\\documents\\github\\angrybirdsclone\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB5329CB-F664-A1A2-73D2-F833311346C7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "LevelManager.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\LevelManager.cs",
               "RelativeDocumentMoniker": "Assets\\LevelManager.cs",
               "ToolTip": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\LevelManager.cs",
               "RelativeToolTip": "Assets\\LevelManager.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowEwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAmwNEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-21T17:48:26.912Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Brick.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\Scripts\\Brick.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Brick.cs",
@@ -55,25 +55,24 @@
               "RelativeToolTip": "Assets\\Scripts\\Brick.cs",
               "ViewState": "AgIAANQAAAAAAAAAAAAuwBkAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T17:34:39.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T17:34:39.512Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Bird.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\Scripts\\Bird.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Bird.cs",
               "ToolTip": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\Scripts\\Bird.cs",
               "RelativeToolTip": "Assets\\Scripts\\Bird.cs",
-              "ViewState": "AgIAAFUBAAAAAAAAAADwv2wBAACMAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAkwHcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-21T17:34:29.653Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "NewLevelManager.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\NewLevelManager.cs",
               "RelativeDocumentMoniker": "Assets\\NewLevelManager.cs",
@@ -81,18 +80,17 @@
               "RelativeToolTip": "Assets\\NewLevelManager.cs",
               "ViewState": "AgIAAD0AAAAAAAAAAAAuwGsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T17:31:47.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T17:31:47.091Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
               "ToolTip": "C:\\Users\\eugen\\Documents\\GitHub\\AngryBirdsClone\\Assets\\Scripts\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAowFoAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAPMAAAAAAAAAAAAAAAwBAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-21T17:15:57.381Z",
               "EditorCaption": ""
