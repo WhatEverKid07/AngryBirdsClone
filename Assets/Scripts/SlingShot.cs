@@ -77,6 +77,7 @@ public class SlingShot : MonoBehaviour
         SetSlingshotLineRenderersActive(true);
         SlingshotLineRenderer1.SetPosition(1, BirdWaitPosition.transform.position);
         SlingshotLineRenderer2.SetPosition(1, BirdWaitPosition.transform.position);
+        Debug.Log("Slingshot_Activate");
     }
     public void SlingShot_Reset()
     {
@@ -87,6 +88,7 @@ public class SlingShot : MonoBehaviour
         SetSlingshotLineRenderersActive(false);
         SlingshotLineRenderer1.SetPosition(1, BirdWaitPosition.transform.position);
         SlingshotLineRenderer2.SetPosition(1, BirdWaitPosition.transform.position);
+        Debug.Log("Slingshot_Reset");
     }
 
     private void Update()

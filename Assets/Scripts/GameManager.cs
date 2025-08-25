@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
         }
 
         vectorsCopy = vectors;
+        Debug.Log("GameManager Activate");
     }
 
     public void GameManager_Reset()
@@ -160,7 +161,7 @@ public class GameManager : MonoBehaviour
         // Kill all active tweens (optional)
         DG.Tweening.DOTween.KillAll();
 
-        Debug.Log("GameManager Reset (lists cleared, fresh state)");
+        Debug.Log("GameManager Reset");
     }
 
     private void Update()

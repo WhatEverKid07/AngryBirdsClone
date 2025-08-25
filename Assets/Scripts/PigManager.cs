@@ -24,12 +24,14 @@ public class PigManager : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log("Pig_Update");
         if (buildMode)
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             rb.bodyType = RigidbodyType2D.Kinematic;
             brickScript.enabled = false;
             objMove.enabled = true;
+            Debug.Log("Pig_Update_BuildMode");
         }
         else if (!buildMode)
         {
@@ -37,6 +39,7 @@ public class PigManager : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Dynamic;
             brickScript.enabled = true;
             objMove.enabled = false;
+            Debug.Log("Pig_Update_!BuildMode");
         }
     }
     public void SetLocation()

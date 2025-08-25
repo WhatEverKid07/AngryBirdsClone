@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class PathPoints : MonoBehaviour
 {
-    public GameObject[] pathTemplates;
+    [SerializeField] private GameObject[] pathTemplates;
 
-    public static PathPoints instance;
+    [SerializeField] internal static PathPoints instance;
 
-    public List<GameObject> lastPoints;
+    [SerializeField] private List<GameObject> lastPoints;
 
-    public float timeInterval;
+    [SerializeField] internal float timeInterval;
 
-    int lastIndex = 0;
+    private int lastIndex = 0;
 
     private void Start()
     {

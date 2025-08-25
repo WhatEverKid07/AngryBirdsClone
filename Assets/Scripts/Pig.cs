@@ -129,7 +129,7 @@ public class Pig : MonoBehaviour
 
     private void die()
     {
-        AudioPlayer.audio.PlayOneShot(soundListDie[0], 2.0f);
+        //AudioPlayer.audio.PlayOneShot(soundListDie[0], 2.0f);
         score.scoreUpdate(dieScore);
 
         GameObject DieText = Instantiate(dieText, new Vector2(transform.position.x, transform.position.y + 1f), new Quaternion(0,0,0,0));

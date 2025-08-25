@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5800000}
   - component: {fileID: 11400000}
   - component: {fileID: 8200000}
+  - component: {fileID: -62133547794141421}
   m_Layer: 0
   m_Name: matilda
   m_TagString: Bird
@@ -107,6 +108,12 @@ Rigidbody2D:
   m_AngularDrag: 5
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -121,6 +128,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -198,6 +224,8 @@ MonoBehaviour:
   Collided: 0
   Boosted: 0
   Exploded: 0
+  bird_Is_Active: 0
+  objMoveRot: {fileID: -62133547794141421}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 0
@@ -294,6 +322,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-62133547794141421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5683b8c721b2d4382206e31ef417ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapRotation: 1
+  rotationStep: 45
+  rotationSpeed: 90
+  snapCooldown: 0.2
 --- !u!1 &6527519992864187475
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +380,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -347,6 +410,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 400000}
     m_Modifications:
     - target: {fileID: 2728141642170230325, guid: 25559b8cb0510d84a94948bb55944ec2,
@@ -458,6 +522,9 @@ PrefabInstance:
       objectReference: {fileID: -1501551839, guid: a7876b806281fce438e7013747bc6d15,
         type: 3}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25559b8cb0510d84a94948bb55944ec2, type: 3}
 --- !u!4 &2547544358225132403 stripped
 Transform:

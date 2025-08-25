@@ -14,21 +14,20 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minY = -5f;
     [SerializeField] private float maxY = 5f;
 
-    /*
+    
     [Header("Zoom Settings")]
     private Camera Cam;
-    [SerializeField] private float CamSize;
-    [SerializeField] private float zoomDelta;
+    [SerializeField] private float zoomSpeed = 5f;
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
-    */
+    
 
     private Vector3 dragOrigin;
 
     private void Start()
     {
         //Cam = Camera.main;
-        //CamSize = Cam.orthographicSize;
+        //Zoom = Cam.orthographicSize;
     }
     void Update()
     {
@@ -40,19 +39,20 @@ public class CameraController : MonoBehaviour
         {
             Vector3 difference = dragOrigin - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position += difference;
-            transform.position = new Vector3(
+            transform.position = new Vector3
+            (
                 Mathf.Clamp(transform.position.x, minX, maxX),
                 Mathf.Clamp(transform.position.y, minY, maxY),
                 transform.position.z
             );
         }
         /*
-        // get the current size + the scrollwheel change
-        zoomDelta = CamSize - Input.mouseScrollDelta.y;
-        // constrain zoom
-        CamSize = Mathf.Clamp(zoomDelta, minZoom, maxZoom);
-        // apply zoom to field of view
-        Cam.orthographicSize = CamSize;
+        float scroll = Input.GetAxis("Mouse ScrollWheel"); // scroll input
+        if (scroll != 0.0f)
+        {
+            float newSize = Cam.orthographicSize - scroll * zoomSpeed;
+            Cam.orthographicSize = Mathf.Clamp(newSize, minZoom, maxZoom);
+        }
         */
     }
 }

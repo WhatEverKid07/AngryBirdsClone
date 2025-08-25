@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Camera worldCamera;  // Camera rendering your 3D world
     [SerializeField] private Canvas canvas;       // UI canvas
-    [SerializeField] private float offsetY = 0.5f;
+    [SerializeField] private PathPoints pathPoints;
 
     [Header("Available Objects to Place")]
     [SerializeField] private GameObject[] placeablePrefabs;
@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private string saveFileName = "customLevel.json";
     private string savedLevelJson = null;
 
-    public List<GameObject> placedObjects = new List<GameObject>();
+    private List<GameObject> placedObjects = new List<GameObject>();
 
     [Header("Play game settings")]
     [SerializeField] GameManager gameManager;
@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
 
     // For Birds
     private Bird bird;
-    public List<Bird> birdScript = new List<Bird>();
+    private List<Bird> birdScript = new List<Bird>();
 
     // For bricks
     private BrickManager brickManager;
@@ -47,6 +47,8 @@ public class LevelManager : MonoBehaviour
     // For Pigs
     private PigManager pigManager;
     private List<PigManager> pigManagerScripts = new List<PigManager>();
+
+    private ObjectMovRot objectMovRot;
 
     public void PlaceObject(int prefabIndex, RectTransform uiButtonRect)
     {
@@ -59,33 +61,43 @@ public class LevelManager : MonoBehaviour
             worldCamera,
             out worldPos))
         {
-            Vector3 spawnPos = worldPos + Vector3.up * offsetY;
+            Vector3 spawnPos = worldPos + Vector3.up;
             spawnPos.z = 0f;
 
             GameObject obj = Instantiate(placeablePrefabs[prefabIndex], spawnPos, Quaternion.identity);
             obj.transform.localScale = Vector3.one * 0.25f;
             placedObjects.Add(obj);
-
-            brickManager = obj.GetComponent<BrickManager>();
-            pigManager = obj.GetComponent<PigManager>();
-            bird = obj.GetComponent<Bird>();
-            if (brickManager != null)
-            {
-                brickManagerScripts.Add(brickManager);
-                brickManager = null;
-            }
-            if (pigManager != null)
-            {
-                pigManagerScripts.Add(pigManager);
-                pigManager = null;
-            }
-            if (bird != null)
-            {
-                birdScript.Add(bird);
-                bird = null;
-            }
+            GetPlacedObjScripts();
+            objectMovRot = obj.GetComponent<ObjectMovRot>();
+            objectMovRot.isPlacing = true;
+            objectMovRot = null;
         }
     }
+
+    public void GetPlacedObjScripts()
+    {
+        brickManagerScripts.Clear();
+        pigManagerScripts.Clear();
+        birdScript.Clear();
+
+        foreach (var obj in placedObjects)
+        {
+            if (obj == null) continue;
+
+            var brickManager = obj.GetComponent<BrickManager>();
+            if (brickManager != null)
+                brickManagerScripts.Add(brickManager);
+
+            var pigManager = obj.GetComponent<PigManager>();
+            if (pigManager != null)
+                pigManagerScripts.Add(pigManager);
+
+            var bird = obj.GetComponent<Bird>();
+            if (bird != null)
+                birdScript.Add(bird);
+        }
+    }
+
 
     // Save all placed objects to JSON
     public void SaveLevel()
@@ -207,8 +219,9 @@ public class LevelManager : MonoBehaviour
         foreach (PigManager pigScript in pigManagerScripts)
         {
             //pigScript.SetLocation();
-            pigScript.buildMode = !pigScript.buildMode;
-            Debug.Log("Pig.Buildmode switch");
+            //pigScript.buildMode = !pigScript.buildMode;
+            pigScript.buildMode = false;
+            Debug.Log("Pig.Buildmode switch on: " + pigScript.gameObject.name);
         }
         foreach (Bird birdScript in birdScript)
         {
@@ -236,6 +249,8 @@ public class LevelManager : MonoBehaviour
         LoadLevelLocally();
         gameManager.GameManager_Reset();
         slingShot.SlingShot_Reset();
+        GetPlacedObjScripts();
+        pathPoints.Clear();
     }
 
     // Helper: find prefab by name

@@ -5,6 +5,7 @@ public class ObjectMovRot : MonoBehaviour
 {
     private bool dragging = false;
     private Vector3 offset;
+    [HideInInspector] internal bool isPlacing = false;
     
     [Header("Rotation Settings")]
     [SerializeField] private bool snapRotation = true;
@@ -16,7 +17,7 @@ public class ObjectMovRot : MonoBehaviour
 
     void Update()
     {
-        if (dragging)
+        if (isPlacing)
         {
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorld.z = transform.position.z;
@@ -25,10 +26,10 @@ public class ObjectMovRot : MonoBehaviour
         if (snapTimer > 0f)
             snapTimer -= Time.deltaTime;
     }
-
+    
     private void OnMouseDown()
     {
-        if (Input.GetMouseButton(1))
+        /*if (Input.GetMouseButton(1))
         {
             RotateObject();
             return;
@@ -39,11 +40,13 @@ public class ObjectMovRot : MonoBehaviour
             mouseWorld.z = transform.position.z;
             offset = transform.position - mouseWorld;
             dragging = true;
-        }
+        }*/
+        isPlacing = !isPlacing;
     }
-
+    /*
     private void OnMouseUp()
     { dragging = false; }
+    */
 
     private void OnMouseOver()
     {
@@ -53,7 +56,7 @@ public class ObjectMovRot : MonoBehaviour
         }
     }
 
-    void RotateObject()
+    private void RotateObject()
     {
         if (snapRotation)
         {

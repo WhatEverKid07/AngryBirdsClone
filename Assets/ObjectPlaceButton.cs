@@ -6,7 +6,6 @@ public class ObjectPlaceButton : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private int itemPrefabIndex;
-    //[SerializeField] private GameObject itemSpawnLocation;
     [SerializeField] private RectTransform myButtonRect;
 
     public void IndexPlacing()

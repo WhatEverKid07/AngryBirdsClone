@@ -98,7 +98,6 @@ public class Bird : MonoBehaviour
     }
     private void Awake()
     {
-        Debug.Log("Bird_Awake");
         cachedScale = transform.localScale;
 
         rb = GetComponent<Rigidbody2D>();
@@ -106,6 +105,7 @@ public class Bird : MonoBehaviour
         audio = GetComponent<AudioSource>();
         collider = GetComponent<CircleCollider2D>();
         objMoveRot = GetComponent<ObjectMovRot>();
+        Debug.Log("Bird_Awake");
     }
     public void Bird_Activate()
     {
@@ -142,6 +142,7 @@ public class Bird : MonoBehaviour
         State = BirdState.BeforeThrown;
         StartCoroutine(animationDelay());
         collider.radius = Constants.BirdColliderRadiusBig;
+        Debug.Log("Bird_Activate");
     }
 
     private void FixedUpdate()
@@ -445,7 +446,7 @@ public class Bird : MonoBehaviour
                     }
                 }
             }
-            AudioPlayer.audio.PlayOneShot(soundListBoost[0]);
+            //AudioPlayer.audio.PlayOneShot(soundListBoost[0]);
             GameObject bombParticleObject = Instantiate(bombParticlePrefab, transform.position, transform.rotation);
             bombParticleObject.GetComponent<ParticleSystem>().Play();
             Destroy(bombParticleObject, 1f);
