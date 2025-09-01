@@ -25,7 +25,7 @@ public class Bird : MonoBehaviour
     [SerializeField] private ParticleSystem particle;
     
     [SerializeField] public int birdType;
-    [SerializeField] public int birdOrder;
+    [SerializeField] internal int birdOrder;
 
     [SerializeField] private GameObject bombParticlePrefab;
     [SerializeField] private GameObject collideParticlePrefab;
@@ -165,14 +165,18 @@ public class Bird : MonoBehaviour
             return;
 
         //disable collider on inactive birds
-        if (gameObject != GameManager.Birds[GameManager.currentBirdIndex] && !Thrown) 
+        /*if (gameObject != GameManager.Birds[GameManager.currentBirdIndex] && !Thrown) 
+        {
+            collider.enabled = false;
+            slingShotCol.enabled = false;
+        }*/
+        var currentBird = GameManager.GetCurrentBirdObject();
+
+        if (currentBird != null && gameObject != currentBird && !Thrown)
         {
             collider.enabled = false;
             slingShotCol.enabled = false;
         }
-
-
-        //enable collider
         else
         {
             collider.enabled = true;
@@ -381,7 +385,7 @@ public class Bird : MonoBehaviour
             {
                 spriteRenderer.sprite = spriteListThrown[0];
             }
-            if (GameManager.Birds[GameManager.currentBirdIndex] != gameObject && State == BirdState.BeforeThrown && Random.Range(0, 2) == 1)
+            /*if (GameManager.Birds[GameManager.currentBirdIndex] != gameObject && State == BirdState.BeforeThrown && Random.Range(0, 2) == 1)
             {
                 if (rb.velocity.magnitude != 0)
                 {
@@ -394,6 +398,25 @@ public class Bird : MonoBehaviour
                 {
                     gameObject.transform.DOJump(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), 0.3f, 1, 0.3f);
                     gameObject.transform.DOLocalRotate(new Vector3(0, 0, 360), 0.3f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear);
+                }
+            }*/
+            var currentBird = GameManager.GetCurrentBirdObject();
+
+            if (currentBird != null && currentBird != gameObject && State == BirdState.BeforeThrown)
+            {
+                if (rb.velocity.magnitude != 0)
+                {
+                    if (Random.Range(0, 2) == 1)
+                    {
+                        transform.DOJump(transform.position, 0.3f, 1, 0.3f);
+                    }
+                    else
+                    {
+                        transform.DOJump(transform.position, 0.3f, 1, 0.3f);
+                        transform.DOLocalRotate(new Vector3(0, 0, 360), 0.3f, RotateMode.FastBeyond360)
+                                 .SetRelative(true)
+                                 .SetEase(Ease.Linear);
+                    }
                 }
             }
         }

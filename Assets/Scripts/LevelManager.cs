@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class LevelObjectData
@@ -39,8 +40,9 @@ public class LevelManager : MonoBehaviour
     // For Birds
     private Bird bird;
     private List<Bird> birdScript = new List<Bird>();
+    private int birdOrder = 1;
 
-    // For bricks
+    // For Bricks
     private BrickManager brickManager;
     private List<BrickManager> brickManagerScripts = new List<BrickManager>();
 
@@ -52,6 +54,8 @@ public class LevelManager : MonoBehaviour
     private List<BounceManager> bounceManagerScripts = new List<BounceManager>();
 
     private ObjectMovRot objectMovRot;
+    [SerializeField] private GameObject playGame;
+    [SerializeField] private GameObject buildGame;
 
     public void PlaceObject(int prefabIndex, RectTransform uiButtonRect)
     {
@@ -74,6 +78,14 @@ public class LevelManager : MonoBehaviour
             objectMovRot = obj.GetComponent<ObjectMovRot>();
             objectMovRot.isPlacing = true;
             objectMovRot = null;
+
+            var bird = obj.GetComponent<Bird>();
+            if (bird != null)
+            {
+                bird.birdOrder = birdOrder;
+                birdOrder++;
+                bird = null;
+            }
         }
     }
 
@@ -175,7 +187,6 @@ public class LevelManager : MonoBehaviour
 
             data.objects.Add(objData);
         }
-
         // Save as JSON string in memory only
         savedLevelJson = JsonUtility.ToJson(data, true);
 
@@ -219,6 +230,8 @@ public class LevelManager : MonoBehaviour
         SaveLevelLocally();
         gameManager.GameManager_Activate();
         slingShot.SlingShot_Activate();
+        playGame.SetActive(false);
+        buildGame.SetActive(true);
         foreach (BrickManager brickScript in brickManagerScripts)
         {
             //brickScript.SetLocation();
@@ -254,6 +267,8 @@ public class LevelManager : MonoBehaviour
             pigScript.buildMode = !pigScript.buildMode;
         }
         */
+        playGame.SetActive(true);
+        buildGame.SetActive(false);
         LoadLevelLocally();
         gameManager.GameManager_Reset();
         slingShot.SlingShot_Reset();

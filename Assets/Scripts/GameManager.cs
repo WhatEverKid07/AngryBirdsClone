@@ -166,6 +166,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(currentBirdIndex);
+
+
         if (!gameManager_Is_Active)
             return;
 
@@ -259,7 +262,15 @@ public class GameManager : MonoBehaviour
         {
             slingshot.slingshotState = SlingshotState.Idle;
             currentBirdIndex++;
-            AnimateBirdToSlingshot();
+
+            if (GetCurrentBirdObject() != null)
+            {
+                AnimateBirdToSlingshot();
+            }
+            else
+            {
+                Debug.Log("No more birds left to animate.");
+            }
         }
     }
 
@@ -270,6 +281,28 @@ public class GameManager : MonoBehaviour
         //AudioPlayer.audio.PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
         Birds[currentBirdIndex].transform.DOJump(slingshot.BirdWaitPosition.transform.position, 2f, 1, Vector2.Distance(Birds[currentBirdIndex].transform.position, slingshot.BirdWaitPosition.transform.position) / 2f).OnComplete(() => completedAnimate());
     }
+    /*private void AnimateBirdToSlingshot()
+    {
+        if (currentBirdIndex < 0 || currentBirdIndex >= Birds.Count)
+        {
+            //Debug.LogWarning($"Invalid currentBirdIndex={currentBirdIndex}, Birds.Count={Birds.Count}");
+            return; // nothing to animate
+        }
+
+        StartCoroutine(moveBirdToNextPost());
+        CurrentGameState = GameState.BirdMovingToSlingshot;
+
+        var bird = GetCurrentBirdObject();
+        if (bird == null) return;
+
+        bird.transform.DOJump(
+            slingshot.BirdWaitPosition.transform.position,
+            2f,
+            1,
+            Vector2.Distance(bird.transform.position, slingshot.BirdWaitPosition.transform.position) / 2f
+        ).OnComplete(() => completedAnimate());
+    }*/
+
     private void completedAnimate()
     {
         CurrentGameState = GameState.Playing;
@@ -277,16 +310,40 @@ public class GameManager : MonoBehaviour
         slingshot.BirdToThrow = Birds[currentBirdIndex];
         Birds[currentBirdIndex].GetComponent<AudioSource>().PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
     }
-    private void Slingshot_BirdThrown(object sender, System.EventArgs e)
+    /*private void completedAnimate()
+    {
+        var bird = GetCurrentBirdObject();
+        if (bird == null)
+        {
+            Debug.LogWarning($"completedAnimate skipped: invalid index {currentBirdIndex}, Birds.Count={Birds.Count}");
+            return;
+        }
+
+        CurrentGameState = GameState.Playing;
+        slingshot.enabled = true;
+        slingshot.BirdToThrow = bird;
+        bird.GetComponent<AudioSource>().PlayOneShot(bird.GetComponent<Bird>().selectSound[0]);
+    }*/
+
+    /*private void Slingshot_BirdThrown(object sender, System.EventArgs e)
     {
         cameraFollow.BirdToFollow = Birds[currentBirdIndex].transform;
         cameraFollow.IsFollowing = true;
+    }*/
+    private void Slingshot_BirdThrown(object sender, System.EventArgs e)
+    {
+        var bird = GetCurrentBirdObject();
+        if (bird == null)
+        {
+            Debug.LogWarning("Slingshot_BirdThrown skipped — no valid bird");
+            return;
+        }
+
+        cameraFollow.BirdToFollow = bird.transform;
+        cameraFollow.IsFollowing = true;
     }
 
-
     // var voids
-
-
     private bool AllPigsDestroyed()
     {
         return Pigs.All(x => x == null);
@@ -341,7 +398,10 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator moveBirdToNextPost()
     {
-        BirdsCopy.RemoveAt(0);
+        if (BirdsCopy.Count > 0)
+        {
+            BirdsCopy.RemoveAt(0);
+        }
         int birdCount = BirdsCopy.Count();
         int birdIndex = 0;
         bool isRunning = false;
@@ -364,5 +424,12 @@ public class GameManager : MonoBehaviour
                 birdIndex++;
             }
         }
+    }
+
+    public static GameObject GetCurrentBirdObject()
+    {
+        if (currentBirdIndex >= 0 && currentBirdIndex < Birds.Count)
+            return Birds[currentBirdIndex];
+        return null;
     }
 }
