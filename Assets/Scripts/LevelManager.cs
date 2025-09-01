@@ -48,6 +48,9 @@ public class LevelManager : MonoBehaviour
     private PigManager pigManager;
     private List<PigManager> pigManagerScripts = new List<PigManager>();
 
+    private BounceManager bounceManager;
+    private List<BounceManager> bounceManagerScripts = new List<BounceManager>();
+
     private ObjectMovRot objectMovRot;
 
     public void PlaceObject(int prefabIndex, RectTransform uiButtonRect)
@@ -76,6 +79,7 @@ public class LevelManager : MonoBehaviour
 
     public void GetPlacedObjScripts()
     {
+        bounceManagerScripts.Clear();
         brickManagerScripts.Clear();
         pigManagerScripts.Clear();
         birdScript.Clear();
@@ -95,6 +99,10 @@ public class LevelManager : MonoBehaviour
             var bird = obj.GetComponent<Bird>();
             if (bird != null)
                 birdScript.Add(bird);
+            
+            var bounceScript = obj.GetComponent<BounceManager>();
+            if (bounceScript != null)
+                bounceManagerScripts.Add(bounceScript);
         }
     }
 

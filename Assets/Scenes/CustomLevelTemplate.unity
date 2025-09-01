@@ -1903,7 +1903,7 @@ PrefabInstance:
     - target: {fileID: 4348533770789970440, guid: 5781152bf4b063f4096493c4ea71e1ce,
         type: 3}
       propertyPath: itemPrefabIndex
-      value: 30
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 7131924640406857676, guid: 5781152bf4b063f4096493c4ea71e1ce,
         type: 3}
@@ -7994,6 +7994,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallItem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4188128771100826128, guid: 5781152bf4b063f4096493c4ea71e1ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4348533770789970440, guid: 5781152bf4b063f4096493c4ea71e1ce,
         type: 3}
       propertyPath: levelManager
@@ -8002,7 +8007,7 @@ PrefabInstance:
     - target: {fileID: 4348533770789970440, guid: 5781152bf4b063f4096493c4ea71e1ce,
         type: 3}
       propertyPath: itemPrefabIndex
-      value: 31
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 7131924640406857676, guid: 5781152bf4b063f4096493c4ea71e1ce,
         type: 3}
@@ -10079,6 +10084,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: 806a25a43525178498022ad94cb504af, type: 3}
   - {fileID: 100000, guid: 7dbf4986c59bc8b45aab3f6aafbbe365, type: 3}
   - {fileID: 100000, guid: a53e5f5138a13364297f1dac0d6e8ac4, type: 3}
+  - {fileID: 4540302564538108758, guid: a7f2457c1820dd346ae3ec8095e40bde, type: 3}
+  - {fileID: 4695631278869639708, guid: 56f3b2f5a66564b46a75342bbd4c8361, type: 3}
   saveFileName: customLevel.json
   gameManager: {fileID: 316319041}
   slingShot: {fileID: 548260564}

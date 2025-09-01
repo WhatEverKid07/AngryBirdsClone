@@ -73,7 +73,7 @@ public class Brick : MonoBehaviour
         {
             tnt(gameObject.transform.position,3f, 500f);
             GameObject bombParticleObject = Instantiate(explosionParticlePrefab, transform.position, transform.rotation);
-            AudioPlayer.audio.PlayOneShot(soundListDestroy[0]);
+            //AudioPlayer.audio.PlayOneShot(soundListDestroy[0]);
             Destroy(bombParticleObject, 2f);
             Destroy(gameObject);
         }

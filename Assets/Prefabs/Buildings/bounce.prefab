@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4695631278869639713}
   - component: {fileID: 4695631278869639714}
   - component: {fileID: 4695631278869639715}
+  - component: {fileID: -5767069413104741297}
+  - component: {fileID: 7482729938092033236}
   m_Layer: 0
   m_Name: bounce
   m_TagString: Brick
@@ -95,6 +97,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 4fe2f6fcd972e1c4cbfbbd7006ee9655, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -111,3 +132,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.12, y: 1.37}
   m_EdgeRadius: 0
+--- !u!114 &-5767069413104741297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4695631278869639708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5683b8c721b2d4382206e31ef417ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapRotation: 1
+  rotationStep: 45
+  rotationSpeed: 90
+  snapCooldown: 0.2
+--- !u!114 &7482729938092033236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4695631278869639708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e00d0ac47091614fbc3455d9c52c492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildMode: 1
+  objMove: {fileID: -5767069413104741297}

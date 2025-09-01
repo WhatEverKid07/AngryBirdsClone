@@ -402,7 +402,7 @@ public class Bird : MonoBehaviour
     {
         Exploded = true;
         yield return new WaitForSeconds(seconds);
-        AudioPlayer.audio.PlayOneShot(soundListDie[0]);
+        //AudioPlayer.audio.PlayOneShot(soundListDie[0]);
         GameObject collideParticleObject = Instantiate(collideParticlePrefab, new Vector2(transform.position.x, transform.position.y), transform.rotation);
         Destroy(collideParticleObject, 1f);
         Destroy(gameObject);
