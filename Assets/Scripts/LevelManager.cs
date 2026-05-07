@@ -1,34 +1,26 @@
+using DG.Tweening;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-
-[System.Serializable]
-public class LevelObjectData
-{
-    public string prefabName;
-    public Vector3 position;
-    public Quaternion rotation;
-}
-
-[System.Serializable]
-public class LevelData
-{
-    public List<LevelObjectData> objects = new List<LevelObjectData>();
-}
-
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance;
+
     [SerializeField] private Camera worldCamera;  // Camera rendering your 3D world
     [SerializeField] private Canvas canvas;       // UI canvas
     [SerializeField] private PathPoints pathPoints;
+
+    private Score score;
 
     [Header("Available Objects to Place")]
     [SerializeField] private GameObject[] placeablePrefabs;
 
     [Header("Save Settings")]
-    [SerializeField] private string saveFileName = "customLevel.json";
+    private string saveFileFolderName = "saves";
     private string savedLevelJson = null;
 
     private List<GameObject> placedObjects = new List<GameObject>();
@@ -56,6 +48,47 @@ public class LevelManager : MonoBehaviour
     private ObjectMovRot objectMovRot;
     [SerializeField] private GameObject playGame;
     [SerializeField] private GameObject buildGame;
+
+    [SerializeField] private bool normalLevel = false;
+    [SerializeField] private bool startMenu= false;
+
+    [SerializeField] public static LevelIconData iconDataLM;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+    private void Start()
+    {
+        if (startMenu) { return; }
+        score = GameObject.Find("number").GetComponent<Score>();
+        LoadLevelObjects(iconDataLM);
+        BuildGame();
+        if (!normalLevel) { return; }
+
+        gameManager.GameManager_Activate();
+        slingShot.SlingShot_Activate();
+        foreach (BrickManager brickScript in brickManagerScripts)
+        {
+            //brickScript.SetLocation();
+            brickScript.buildMode = !brickScript.buildMode;
+        }
+        foreach (PigManager pigScript in pigManagerScripts)
+        {
+            //pigScript.SetLocation();
+            //pigScript.buildMode = !pigScript.buildMode;
+            pigScript.buildMode = false;
+            Debug.Log("Pig.Buildmode switch on: " + pigScript.gameObject.name);
+        }
+        foreach (Bird birdScript in birdScript)
+        {
+            if (birdScript != null)
+            {
+                birdScript.Bird_Activate();
+            }
+        }
+        Debug.Log("Normal level start.");
+    }
 
     public void PlaceObject(int prefabIndex, RectTransform uiButtonRect)
     {
@@ -89,6 +122,16 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void RemoveObject(GameObject obj)
+    {
+        if (placedObjects.Contains(obj))
+        {
+            placedObjects.Remove(obj);
+            Destroy(obj);
+            GetPlacedObjScripts();
+        }
+    }
+
     public void GetPlacedObjScripts()
     {
         bounceManagerScripts.Clear();
@@ -118,11 +161,34 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
-    // Save all placed objects to JSON
-    public void SaveLevel()
+    public void SaveLevelObjects()
     {
-        LevelData data = new LevelData();
+        if (iconDataLM == null)
+        {
+            Debug.LogWarning("No active iconDataLM set for saving objects.");
+            return;
+        }
+
+        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        Directory.CreateDirectory(folder);
+
+        string filePath = Path.Combine(folder, $"{iconDataLM.levelID}.json");
+
+        LevelData data;
+
+        // Load existing file if it exists
+        if (File.Exists(filePath))
+        {
+            string existingJson = File.ReadAllText(filePath);
+            data = JsonUtility.FromJson<LevelData>(existingJson);
+        }
+        else
+        {
+            data = new LevelData();
+        }
+
+        // Replace objects with current placedObjects
+        data.objects.Clear();
 
         foreach (var obj in placedObjects)
         {
@@ -134,33 +200,89 @@ public class LevelManager : MonoBehaviour
             data.objects.Add(objData);
         }
 
-        string json = JsonUtility.ToJson(data, true);
-        string path = Path.Combine(Application.persistentDataPath, saveFileName);
-        File.WriteAllText(path, json);
+        // Ensure icon info is up to date
+        data.levelName = iconDataLM.iconName;
+        data.icons.Clear();
+        data.icons.Add(iconDataLM);
 
-        Debug.Log("Level saved to: " + path);
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(filePath, json);
+
+        Debug.Log("Saved level objects to: " + filePath);
     }
 
-    // Load a level from JSON
-    public void LoadLevel()
+
+
+    public void SaveLevelIcon(LevelIconData icon)
     {
-        string path = Path.Combine(Application.persistentDataPath, saveFileName);
-        if (!File.Exists(path))
+        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        Directory.CreateDirectory(folder);
+
+        string filePath = Path.Combine(folder, $"{icon.levelID}.json");
+
+        LevelData data;
+
+        if (File.Exists(filePath))
         {
-            Debug.LogWarning("No saved level found.");
+            string existingJson = File.ReadAllText(filePath);
+            data = JsonUtility.FromJson<LevelData>(existingJson);
+        }
+        else
+        {
+            data = new LevelData();
+        }
+
+        data.levelName = icon.iconName;
+        data.icons.Clear();
+        data.icons.Add(icon);
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(filePath, json);
+
+        Debug.Log("Saved level icon to: " + filePath);
+    }
+
+    public void LoadAllLevelButtons()
+    {
+        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        Directory.CreateDirectory(folder);
+
+        string[] files = Directory.GetFiles(folder, "*.json");
+
+        CL_ButtonManager.Instance.icons.Clear();
+
+        foreach (string file in files)
+        {
+            string json = File.ReadAllText(file);
+            LevelData data = JsonUtility.FromJson<LevelData>(json);
+
+            if (data.icons.Count > 0)
+            {
+                LevelIconData icon = data.icons[0];
+                CL_ButtonManager.Instance.icons.Add(icon);
+            }
+        }
+
+        CL_ButtonManager.Instance.RebuildButtonsFromData();
+        Debug.Log("Loaded all level buttons.");
+    }
+    public void LoadLevelObjects(LevelIconData icon)
+    {
+        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        string filePath = Path.Combine(folder, $"{icon.levelID}.json");
+
+        if (!File.Exists(filePath))
+        {
+            Debug.LogWarning("Level file not found: " + filePath);
             return;
         }
 
-        // Clear existing objects
-        foreach (var obj in placedObjects)
-        {
-            Destroy(obj);
-        }
-        placedObjects.Clear();
-
-        // Load and spawn
-        string json = File.ReadAllText(path);
+        string json = File.ReadAllText(filePath);
         LevelData data = JsonUtility.FromJson<LevelData>(json);
+
+        foreach (var obj in placedObjects)
+            Destroy(obj);
+        placedObjects.Clear();
 
         foreach (var objData in data.objects)
         {
@@ -172,8 +294,24 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Level loaded.");
+        Debug.Log("Loaded level objects.");
     }
+
+    public void DeleteLevel(LevelIconData icon)
+    {
+        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        string filePath = Path.Combine(folder, $"{icon.levelID}.json");
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+            Debug.Log("Deleted level file: " + filePath);
+        }
+        else
+        {
+            Debug.LogWarning("Level file not found for deletion: " + filePath);
+        }
+    }
+
     public void SaveLevelLocally()
     {
         LevelData data = new LevelData();
@@ -202,6 +340,10 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Bird");
+        foreach (GameObject go in gos)
+            Destroy(go);
+
         // Clear existing objects
         foreach (var obj in placedObjects)
         {
@@ -225,8 +367,21 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Level loaded from local memory.");
     }
 
+    public void OpenLevel(LevelIconData iconData)
+    {
+        iconDataLM = iconData;
+        SceneManager.LoadScene("CustomLevelTemplate"); // Ensure you're on the correct scene
+    }
+
     public void PlayGame()
     {
+        if (GameObject.FindGameObjectsWithTag("Pig").Length == 0 ||
+    GameObject.FindGameObjectsWithTag("Bird").Length == 0)
+        {
+            Debug.LogWarning("Cannot start game: missing Pig or Bird in scene.");
+            return;
+        }
+
         SaveLevelLocally();
         gameManager.GameManager_Activate();
         slingShot.SlingShot_Activate();
@@ -267,6 +422,7 @@ public class LevelManager : MonoBehaviour
             pigScript.buildMode = !pigScript.buildMode;
         }
         */
+        DOTween.KillAll(true); // <- important: TRUE forces completion kill
         playGame.SetActive(true);
         buildGame.SetActive(false);
         LoadLevelLocally();
@@ -274,6 +430,7 @@ public class LevelManager : MonoBehaviour
         slingShot.SlingShot_Reset();
         GetPlacedObjScripts();
         pathPoints.Clear();
+        score.scoreReset();
     }
 
     // Helper: find prefab by name

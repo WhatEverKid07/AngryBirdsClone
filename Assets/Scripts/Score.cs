@@ -14,6 +14,11 @@ public class Score : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    public void scoreReset()
+    {
+        score = 0;
+        scoreText.text = score.ToString();
+    }
 
     public void maxScoreUpdate(int value)
     {

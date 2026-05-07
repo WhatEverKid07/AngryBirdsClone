@@ -32,7 +32,7 @@ public class Egg : MonoBehaviour
             }
         }
 
-        AudioPlayer.audio.PlayOneShot(clip[0]);
+        //AudioPlayer.audio.PlayOneShot(clip[0]);
 
         GameObject collideParticleObject = Instantiate(collideParticlePrefab, new Vector2(transform.position.x, transform.position.y), transform.rotation);
 

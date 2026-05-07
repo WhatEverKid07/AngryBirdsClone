@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraFollow cameraFollow;
     [SerializeField] private SlingShot slingshot;
 
-    [HideInInspector]
+    //[HideInInspector]
+
     public static GameState CurrentGameState = GameState.Start;
 
     public static List<GameObject> Bricks;
@@ -23,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     public static int currentBirdIndex;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Vector2> vectors;
-    [HideInInspector]
+    //[HideInInspector]
     public List<Vector2> vectorsCopy;
 
     public static int birdsNumber;
@@ -128,6 +129,8 @@ public class GameManager : MonoBehaviour
 
     public void GameManager_Reset()
     {
+        DOTween.KillAll(true);
+        StopAllCoroutines();
         gameManager_Is_Active = false;
         // Reset Game State
         CurrentGameState = GameState.Start;
@@ -157,9 +160,6 @@ public class GameManager : MonoBehaviour
         // Reset Time/Physics
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.01f;
-
-        // Kill all active tweens (optional)
-        DG.Tweening.DOTween.KillAll();
 
         Debug.Log("GameManager Reset");
     }
@@ -263,24 +263,55 @@ public class GameManager : MonoBehaviour
             slingshot.slingshotState = SlingshotState.Idle;
             currentBirdIndex++;
 
+            if (currentBirdIndex >= Birds.Count)
+            {
+                Debug.Log("No more birds");
+                return;
+            }
+
             if (GetCurrentBirdObject() != null)
             {
                 AnimateBirdToSlingshot();
-            }
-            else
-            {
-                Debug.Log("No more birds left to animate.");
             }
         }
     }
 
     private void AnimateBirdToSlingshot()
     {
+        if (currentBirdIndex < 0 || currentBirdIndex >= Birds.Count)
+        {
+            Debug.LogWarning("AnimateBirdToSlingshot blocked: invalid index");
+            return;
+        }
+
+        GameObject bird = Birds[currentBirdIndex];
+        if (bird == null)
+        {
+            Debug.LogWarning("AnimateBirdToSlingshot blocked: bird is null");
+            return;
+        }
+
         StartCoroutine(moveBirdToNextPost());
         CurrentGameState = GameState.BirdMovingToSlingshot;
-        //AudioPlayer.audio.PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
-        Birds[currentBirdIndex].transform.DOJump(slingshot.BirdWaitPosition.transform.position, 2f, 1, Vector2.Distance(Birds[currentBirdIndex].transform.position, slingshot.BirdWaitPosition.transform.position) / 2f).OnComplete(() => completedAnimate());
+
+        bird.transform
+            .DOJump(
+                slingshot.BirdWaitPosition.transform.position,
+                2f,
+                1,
+                Vector2.Distance(bird.transform.position, slingshot.BirdWaitPosition.transform.position) / 2f
+            )
+            .SetLink(bird) // 🔥 IMPORTANT FIX
+            .OnComplete(() => completedAnimate());
     }
+
+    //private void AnimateBirdToSlingshot()
+    //{
+    //    StartCoroutine(moveBirdToNextPost());
+    //    CurrentGameState = GameState.BirdMovingToSlingshot;
+    //    //AudioPlayer.audio.PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
+    //    Birds[currentBirdIndex].transform.DOJump(slingshot.BirdWaitPosition.transform.position, 2f, 1, Vector2.Distance(Birds[currentBirdIndex].transform.position, slingshot.BirdWaitPosition.transform.position) / 2f).OnComplete(() => completedAnimate());
+    //}
     /*private void AnimateBirdToSlingshot()
     {
         if (currentBirdIndex < 0 || currentBirdIndex >= Birds.Count)
@@ -303,13 +334,47 @@ public class GameManager : MonoBehaviour
         ).OnComplete(() => completedAnimate());
     }*/
 
+
     private void completedAnimate()
     {
+        GameObject bird = GetCurrentBirdObject();
+
+        if (bird == null)
+        {
+            Debug.LogWarning("completedAnimate: no valid bird");
+            return;
+        }
+
         CurrentGameState = GameState.Playing;
         slingshot.enabled = true;
-        slingshot.BirdToThrow = Birds[currentBirdIndex];
-        Birds[currentBirdIndex].GetComponent<AudioSource>().PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
+        slingshot.BirdToThrow = bird;
+
+        var audio = bird.GetComponent<AudioSource>();
+        var birdComp = bird.GetComponent<Bird>();
+
+        if (audio != null && birdComp != null && birdComp.selectSound.Length > 0)
+        {
+            //audio.PlayOneShot(birdComp.selectSound[0]);
+        }
     }
+    //private void completedAnimate()
+    //{
+    //    if (Birds == null || Birds.Count == 0)
+    //    {
+    //        Debug.LogWarning("completedAnimate called with no birds");
+    //        return;
+    //    }
+
+    //    if (currentBirdIndex < 0 || currentBirdIndex >= Birds.Count)
+    //    {
+    //        Debug.LogWarning("Invalid bird index");
+    //        return;
+    //    }
+    //    CurrentGameState = GameState.Playing;
+    //    slingshot.enabled = true;
+    //    slingshot.BirdToThrow = Birds[currentBirdIndex];
+    //    Birds[currentBirdIndex].GetComponent<AudioSource>().PlayOneShot(Birds[currentBirdIndex].GetComponent<Bird>().selectSound[0]);
+    //}
     /*private void completedAnimate()
     {
         var bird = GetCurrentBirdObject();

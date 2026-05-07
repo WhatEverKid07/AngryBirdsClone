@@ -32,6 +32,7 @@ public class Bird : MonoBehaviour
     [SerializeField] private GameObject bombExplosionParticlePrefab;
     //[SerializeField] private GameObject particleObject;
     [SerializeField] private GameObject egg;
+    private bool blueActivated = false;
 
 
 
@@ -154,7 +155,7 @@ public class Bird : MonoBehaviour
         {
             if (birdType != 3)
             {
-                StartCoroutine(DestroyAfter(5));
+                //StartCoroutine(DestroyAfter(5));
             }
         }
     }
@@ -196,8 +197,9 @@ public class Bird : MonoBehaviour
 
         // chuck
         if (birdType == 1 && Input.GetMouseButtonDown(0) && Collided == false && State == BirdState.Thrown && Boosted == false) chuck();
+
         //blues
-        if (birdType == 2 && Input.GetMouseButton(0) && Collided == false && State == BirdState.Thrown && Boosted == false) blues();
+        if (birdType == 2 && Input.GetMouseButtonDown(0) && Collided == false && State == BirdState.Thrown && Boosted == false && !blueActivated) blues();
 
         // bomb
         if (birdType == 3 && State == BirdState.Thrown && Boosted == false && Input.GetMouseButtonDown(0)) StartCoroutine(ExplosionDamage(2f, 6000f));
@@ -228,9 +230,9 @@ public class Bird : MonoBehaviour
 
     private void blues()
     {
-
+        if (blueActivated) return;
         boost = true;
-
+        blueActivated = true;
         Boosted = true;
 
         List<GameObject> birdList = new List<GameObject>();
@@ -250,10 +252,11 @@ public class Bird : MonoBehaviour
         duplicate1.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x, rb.velocity.y - 3f);
         duplicate2.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x, rb.velocity.y + 3f);
 
-        audio.PlayOneShot(soundListBoost[0]);
+        //audio.PlayOneShot(soundListBoost[0]);
 
         //GameObject collideParticleObject = Instantiate(collideParticlePrefab, new Vector2(transform.position.x, transform.position.y), transform.rotation);
         //Destroy(collideParticleObject, 1f);
+        Debug.Log("Blues activated");
     }
     private void matilda()
     {
@@ -272,7 +275,7 @@ public class Bird : MonoBehaviour
         GameObject eggObject = Instantiate(egg, new Vector2(transform.position.x, transform.position.y - 0.5f), transform.rotation);
         spriteRenderer.sprite = spriteListBoost[0];
 
-        AudioPlayer.audio.PlayOneShot(soundListBoost[0]);
+        //AudioPlayer.audio.PlayOneShot(soundListBoost[0]);
 
         particle.Play();
     }

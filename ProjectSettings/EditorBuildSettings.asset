@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 16b7cdcfe3caa4c489cef7c4d6b9032f
+  - enabled: 1
+    path: Assets/Scenes/CustomLevelTemplate.unity
+    guid: 921865c6e66dd0d4a821ab4f96dd4fd8
   m_configObjects: {}

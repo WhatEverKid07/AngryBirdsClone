@@ -79,7 +79,7 @@ public class Brick : MonoBehaviour
         }
         else
         {
-            AudioPlayer.audio.PlayOneShot(soundListDestroy[0], 0.5f);
+            //AudioPlayer.audio.PlayOneShot(soundListDestroy[0], 0.5f);
             score.scoreUpdate(destroyScore);
             GameObject particleObject = Instantiate(woodParticle, transform.position, transform.rotation);
             particleObject.GetComponent<ParticleSystem>().Play();

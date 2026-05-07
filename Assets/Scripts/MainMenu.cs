@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]  private GameObject startMenu;
     [SerializeField]  private GameObject episodeMenu;
     [SerializeField]  private GameObject episode1;
+    [SerializeField]  private GameObject customLevels;
 
 
     private void Start()
@@ -36,14 +37,19 @@ public class MainMenu : MonoBehaviour
     {
         menuSound(0);
 
-        if (episodeMenu.active)
+        if (episodeMenu.activeInHierarchy)
         {
             closeWindow(episodeMenu);
             openWindow(startMenu);
         }
-        else if(episode1.active)
+        else if(episode1.activeInHierarchy)
         {
             closeWindow(episode1);
+            openWindow(episodeMenu);
+        }
+        else if (customLevels.activeInHierarchy)
+        {
+            closeWindow(customLevels);
             openWindow(episodeMenu);
         }
     }
