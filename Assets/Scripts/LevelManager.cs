@@ -128,6 +128,10 @@ public class LevelManager : MonoBehaviour
         {
             placedObjects.Remove(obj);
             Destroy(obj);
+            if (obj.GetComponent<Bird>() != null)
+            {
+                birdOrder--;
+            }
             GetPlacedObjScripts();
         }
     }
@@ -169,7 +173,8 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        //string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        string folder = Path.Combine(Directory.GetParent(Application.dataPath).FullName, saveFileFolderName);
         Directory.CreateDirectory(folder);
 
         string filePath = Path.Combine(folder, $"{iconDataLM.levelID}.json");
@@ -197,6 +202,12 @@ public class LevelManager : MonoBehaviour
             objData.position = obj.transform.position;
             objData.rotation = obj.transform.rotation;
 
+            Bird bird = obj.GetComponent<Bird>();
+            if (bird != null)
+            {
+                objData.birdOrder = bird.birdOrder;
+            }
+
             data.objects.Add(objData);
         }
 
@@ -215,7 +226,8 @@ public class LevelManager : MonoBehaviour
 
     public void SaveLevelIcon(LevelIconData icon)
     {
-        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        //string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        string folder = Path.Combine(Directory.GetParent(Application.dataPath).FullName, saveFileFolderName);
         Directory.CreateDirectory(folder);
 
         string filePath = Path.Combine(folder, $"{icon.levelID}.json");
@@ -244,31 +256,62 @@ public class LevelManager : MonoBehaviour
 
     public void LoadAllLevelButtons()
     {
-        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        string folder = Path.Combine(Directory.GetParent(Application.dataPath).FullName, saveFileFolderName);
         Directory.CreateDirectory(folder);
 
         string[] files = Directory.GetFiles(folder, "*.json");
 
         CL_ButtonManager.Instance.icons.Clear();
 
+        // Track used slots
+        bool[] usedSlots = new bool[CustomLevelManager.Instance.possibleIconLocation.Length];
+
         foreach (string file in files)
         {
             string json = File.ReadAllText(file);
             LevelData data = JsonUtility.FromJson<LevelData>(json);
 
-            if (data.icons.Count > 0)
+            if (data.icons.Count == 0)
+                continue;
+
+            LevelIconData icon = data.icons[0];
+
+            int index = icon.placeholderIndex;
+
+            // If slot is taken, find next free one
+            if (index < 0 || index >= usedSlots.Length || usedSlots[index])
             {
-                LevelIconData icon = data.icons[0];
-                CL_ButtonManager.Instance.icons.Add(icon);
+                index = FindNextFreeSlot(usedSlots);
+
+                // Update icon data
+                icon.placeholderIndex = index;
+
+                // Save updated placeholderIndex back to file
+                data.icons[0] = icon;
+                string updatedJson = JsonUtility.ToJson(data, true);
+                File.WriteAllText(file, updatedJson);
+
+                Debug.Log("Updated placeholderIndex for " + icon.iconName + " to slot " + index);
             }
+
+            // Mark slot as used
+            usedSlots[index] = true;
+
+            // Add icon to UI list
+            CL_ButtonManager.Instance.icons.Add(icon);
         }
 
         CL_ButtonManager.Instance.RebuildButtonsFromData();
         Debug.Log("Loaded all level buttons.");
     }
+
     public void LoadLevelObjects(LevelIconData icon)
     {
-        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        birdOrder = 1;
+
+        //string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        string folder = Path.Combine(Directory.GetParent(Application.dataPath).FullName, saveFileFolderName);
+
         string filePath = Path.Combine(folder, $"{icon.levelID}.json");
 
         if (!File.Exists(filePath))
@@ -290,6 +333,14 @@ public class LevelManager : MonoBehaviour
             if (prefab != null)
             {
                 GameObject obj = Instantiate(prefab, objData.position, objData.rotation);
+
+                Bird bird = obj.GetComponent<Bird>();
+                if (bird != null)
+                {
+                    bird.birdOrder = objData.birdOrder;
+                    birdOrder++;
+                }
+
                 placedObjects.Add(obj);
             }
         }
@@ -299,7 +350,9 @@ public class LevelManager : MonoBehaviour
 
     public void DeleteLevel(LevelIconData icon)
     {
-        string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        //string folder = Path.Combine(Application.persistentDataPath, saveFileFolderName);
+        string folder = Path.Combine(Directory.GetParent(Application.dataPath).FullName, saveFileFolderName);
+
         string filePath = Path.Combine(folder, $"{icon.levelID}.json");
         if (File.Exists(filePath))
         {
@@ -322,6 +375,12 @@ public class LevelManager : MonoBehaviour
             objData.prefabName = obj.name.Replace("(Clone)", "").Trim();
             objData.position = obj.transform.position;
             objData.rotation = obj.transform.rotation;
+
+            Bird bird = obj.GetComponent<Bird>();
+            if (bird != null)
+            {
+                objData.birdOrder = bird.birdOrder;
+            }
 
             data.objects.Add(objData);
         }
@@ -360,6 +419,14 @@ public class LevelManager : MonoBehaviour
             if (prefab != null)
             {
                 GameObject obj = Instantiate(prefab, objData.position, objData.rotation);
+
+                Bird bird = obj.GetComponent<Bird>();
+                if (bird != null)
+                {
+                    bird.birdOrder = objData.birdOrder;
+                    //birdOrder++;
+                }
+
                 placedObjects.Add(obj);
             }
         }
@@ -371,6 +438,22 @@ public class LevelManager : MonoBehaviour
     {
         iconDataLM = iconData;
         SceneManager.LoadScene("CustomLevelTemplate"); // Ensure you're on the correct scene
+    }
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private int FindNextFreeSlot(bool[] usedSlots)
+    {
+        for (int i = 0; i < usedSlots.Length; i++)
+        {
+            if (!usedSlots[i])
+                return i;
+        }
+
+        Debug.LogWarning("No free icon slots available!");
+        return 0; // fallback
     }
 
     public void PlayGame()

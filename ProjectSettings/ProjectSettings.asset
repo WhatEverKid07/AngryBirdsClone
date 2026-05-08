@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Jdomi Studios
-  productName: AngryBirds
+  companyName: DefaultCompany
+  productName: AngryBirds Level Maker
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.12156863, g: 0.12156863, b: 0.1254902, a: 1}
@@ -164,7 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.Gkanatsios.AngryBirdsClone
-    Standalone: com.Jdomi-Studios.AngryBirds
+    Standalone: com.DefaultCompany.AngryBirds
     Tizen: com.Gkanatsios.AngryBirdsClone
     iPhone: com.Gkanatsios.AngryBirdsClone
     tvOS: com.Gkanatsios.AngryBirdsClone
@@ -296,7 +296,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 65af305d12a104143b66139f4aeec849, type: 3}
+      m_Icon: {fileID: 2800000, guid: e0fdc475bc732bc4cb87ab5af1cda6c6, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -1064,11 +1064,11 @@ PlayerSettings:
   apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 09904f57-f43c-4399-ad9b-6fe627b4117d
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: AngryBirds
-  organizationId: jdomi
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   hmiLoadingImage: {fileID: 0}

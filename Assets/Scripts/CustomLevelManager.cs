@@ -7,7 +7,7 @@ public class CustomLevelManager : MonoBehaviour
     public static CustomLevelManager Instance;
 
     [SerializeField] private GameObject newLevelIcon;
-    [SerializeField] private Transform[] possibleIconLocation;
+    [SerializeField] internal Transform[] possibleIconLocation;
     public Transform iconParent;
     private void Awake()
     {

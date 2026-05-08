@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1050
   m_ShowMode: 0
-  m_Title: Console
+  m_Title: Animation
   m_RootView: {fileID: 4}
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 1920
     height: 1007
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 9}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 48
+  controlID: 17
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 49
+  controlID: 18
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -543,7 +543,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 129480
+  m_LastSelectedObjectID: 76228
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -584,7 +584,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 205cfeff9060feff1aa1feff3ca6feffe0d2feffcad7feff60ddfeff86e3feff88e3feff8ce3feff7287ffff84c4ffff26c9ffff76c9ffff98d9fffffafaffffd86b0000206d0000086e0000486e00004e6f00003070000024b90000a2c30000eac3000012c40000e05e0100b05f0100f05f0100186801009e680100a2680100986e0100686f0100ee6f010064710100fcf9010028fa0100
+      m_ExpandedIDs: eafaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1226,9 +1226,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2153.4336, y: 716.0512, z: -3.1559587}
+    m_Target: {x: 1133.5151, y: 431.8873, z: -7.271837}
     speed: 2
-    m_Value: {x: 2153.4336, y: 716.0512, z: -3.1559587}
+    m_Value: {x: 1133.5151, y: 431.8873, z: -7.271837}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1278,9 +1278,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 396.98978
+    m_Target: 936.9666
     speed: 2
-    m_Value: 396.98978
+    m_Value: 936.9666
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1351,7 +1351,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Sprites/Menu
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1359,16 +1359,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Sprites/Menu
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\eugen\Documents\GitHub\AngryBirdsClone
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 7e720000
-    m_LastClickedID: 29310
-    m_ExpandedIDs: 00000000607200007a72000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 155}
+    m_SelectedIDs: 46720000
+    m_LastClickedID: 29254
+    m_ExpandedIDs: 00000000ca710000fe71000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1396,7 +1396,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000060720000
+    m_ExpandedIDs: 00000000ca710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000000000002e9300000a6d0000086d0000c67b0000326a00000e6c000044700000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
